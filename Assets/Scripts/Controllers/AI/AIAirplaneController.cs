@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controller : MonoBehaviour
+public class AIAirplaneController : AIController
 {
-
 	// Use this for initialization
 	void Start ()
     {
