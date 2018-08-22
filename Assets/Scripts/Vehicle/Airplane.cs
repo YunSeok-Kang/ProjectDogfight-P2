@@ -41,21 +41,10 @@ public class Airplane : Vehicle
     public float altitudePhase1Start = 0f;
     public float altitudePhase2Start = 0f;
 
-    /// <summary>
-    /// 재욱 파트 임시로 묶어둠.
-    /// </summary>
-    [SerializeField] private float firstDangerPercent;
-    [SerializeField] private float secondDangerPercent;
-    private bool isFirstSmokeOn = false;
-    private bool isSecondSmokeOn = false;
-    public ParticleSystem firstSmoke;
-    public ParticleSystem secondSmoke;
 
 
     private void Start()
     {
-        base.Start();
-
         m_Rigidbody = GetComponent<Rigidbody2D>();
         // Store original drag settings, these are modified during flight.
         m_OriginalDrag = m_Rigidbody.drag;
@@ -212,34 +201,5 @@ public class Airplane : Vehicle
         var torque = PitchInput * m_PitchEffect;
 
         m_Rigidbody.AddTorque(torque * ForwardSpeed * m_AeroFactor * m_torqueFactor);
-    }
-
-    protected override void EventByDesiredHealthPoint(float hp)
-    {
-        SetSmokeByHealthPoint(hp);
-
-        if (hp <= 0)
-            Destroy(gameObject);
-    }
-
-    protected void SetSmokeByHealthPoint(float hp)
-    {
-        float currentPercentage = hp / maxHealthPoint * 100;
-
-        if (secondDangerPercent < currentPercentage && currentPercentage <= firstDangerPercent)
-        {
-            firstSmoke.Play();
-            secondSmoke.Stop();
-        }
-        else if (currentPercentage <= secondDangerPercent)
-        {
-            firstSmoke.Stop();
-            secondSmoke.Play();
-        }
-        else
-        {
-            firstSmoke.Stop();
-            secondSmoke.Stop();
-        }
     }
 }
