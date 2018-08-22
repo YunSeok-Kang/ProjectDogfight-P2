@@ -6,6 +6,12 @@ using UnityEngine;
 public class AmmoTrigger : AmmoModel
 {
     public AmmoEffect ammoEffect = null;
+    protected Ammo ammo;
+
+    private void Awake()
+    {
+        ammo = GetComponent<Ammo>();
+    }
 
     private void Start()
     {
