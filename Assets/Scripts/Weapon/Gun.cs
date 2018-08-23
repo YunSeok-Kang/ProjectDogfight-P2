@@ -56,6 +56,10 @@ public class Gun : Weapon
             yield return null;
         }
     }
+    public IEnumerator Reload()
+    {
+        yield return null;
+    }
     private void SpawnAmmo()
     {
         var newAmmo =

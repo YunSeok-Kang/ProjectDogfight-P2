@@ -5,12 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(AmmoEffect))]
 public class AmmoTrigger : AmmoModel
 {
-    public AmmoEffect ammoEffect = null;
+    protected AmmoEffect ammoEffect = null;
     protected Ammo ammo;
 
     private void Awake()
     {
         ammo = GetComponent<Ammo>();
+        ammoEffect = GetComponent<AmmoEffect>();
     }
 
     private void Start()
