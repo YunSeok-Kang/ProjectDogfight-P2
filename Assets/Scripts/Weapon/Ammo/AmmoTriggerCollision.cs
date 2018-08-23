@@ -8,7 +8,7 @@ public class AmmoTriggerCollision : AmmoTrigger
     {
         if (collision.gameObject.CompareTag(ammo.enemyTag))
         {
-            ammoEffect.Effect(collision.gameObject);
+            Trigger(collision.gameObject);
         }
     }
 }

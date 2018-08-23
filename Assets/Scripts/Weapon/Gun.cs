@@ -18,6 +18,7 @@ public class Gun : Weapon
     public Transform muzzle;
 
     private bool isCanFire = true;
+    [SerializeField]
     private string enemyTag;
 
 
@@ -31,7 +32,6 @@ public class Gun : Weapon
 
         string thisTag = transform.root.GetComponent<Vehicle>().tag;
         enemyTag = (thisTag == "Player") ? "Enemy" : "Player";
-
         return true;
     }
 

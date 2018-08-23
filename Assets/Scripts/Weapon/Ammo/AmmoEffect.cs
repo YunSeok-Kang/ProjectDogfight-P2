@@ -6,12 +6,12 @@ public class AmmoEffect : AmmoModel
 {
     public virtual void Effect()
     {
-
+        Destroy(gameObject); //Vox Destroy??
     }
 
     public virtual void Effect(GameObject target)
     {
-        
+        Destroy(gameObject); //Vox Destroy??
     }
 
 }
