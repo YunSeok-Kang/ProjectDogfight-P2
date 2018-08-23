@@ -9,7 +9,11 @@ public class GunTestController : MonoBehaviour {
 	void Update () {
 		if(Input.GetButton("Fire1"))
         {
-            gunManager.Fire();
+            gunManager.PullTrigger();
+        }
+        if(Input.GetButtonDown("Fire2"))
+        {
+            gunManager.Reload();
         }
 	}
 }

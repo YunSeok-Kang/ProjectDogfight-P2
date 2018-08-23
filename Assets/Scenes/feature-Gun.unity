@@ -382,6 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guns:
   - {fileID: 2052311544}
+  reloadTime: 1
 --- !u!4 &1336230573
 Transform:
   m_ObjectHideFlags: 0
@@ -719,7 +720,6 @@ MonoBehaviour:
   ammoType: {fileID: 1413574292632272, guid: 5ecdfd738fd564d499b22fa30415a707, type: 2}
   delayOfFire: 0.15
   muzzle: {fileID: 371718941}
-  enemyTag: 
 --- !u!1 &2071090787
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,6 @@ public class Gun : Weapon
     public Transform muzzle;
 
     private bool isCanFire = true;
-    [SerializeField]
     private string enemyTag;
 
 
@@ -56,9 +55,9 @@ public class Gun : Weapon
             yield return null;
         }
     }
-    public IEnumerator Reload()
+    public void Reload()
     {
-        yield return null;
+        loadedCapacity = maxCapacity;
     }
     private void SpawnAmmo()
     {
