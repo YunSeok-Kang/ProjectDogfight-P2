@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class VoxObject : MonoBehaviour {
 
+    [SerializeField]
     private float _hp = 0f;
 
     public float HP
@@ -31,6 +32,11 @@ public class VoxObject : MonoBehaviour {
                     _hp += finalHealing;
                     OnHealed(finalHealing);
                 }
+            }
+            
+            if(value <= 0 )
+            {
+                OnHPZero();
             }
         }
 
@@ -66,18 +72,18 @@ public class VoxObject : MonoBehaviour {
 
     // ----------------------------------------------------- VoxObject Functions ----------------------------------------------------- //
 
-    protected virtual float CalculateActualDamage(float damage)
+    protected virtual float CalculateActualDamage(float value)
     {
-        float finalDamage = damage;
+        float finalDamage = _hp - value;
 
         // 원하는거 하세요
 
         return finalDamage;
     }
 
-    protected virtual float CalculateActualHealing(float healing)
+    protected virtual float CalculateActualHealing(float value)
     {
-        float finalHealing = healing;
+        float finalHealing = value - _hp;
 
         return finalHealing;
     }
@@ -94,7 +100,7 @@ public class VoxObject : MonoBehaviour {
 
     protected virtual void OnHPZero()
     {
-
+        VoxDestroy();
     }
 
 
@@ -110,7 +116,7 @@ public class VoxObject : MonoBehaviour {
         return true;
     }
 
-    protected virtual void VoxDestroy(float destroyDelay = 1f)
+    protected virtual void VoxDestroy(float destroyDelay = 0f)
     {
         // 이펙트(있을 시 플레이)
         
