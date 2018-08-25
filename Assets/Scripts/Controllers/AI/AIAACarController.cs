@@ -20,12 +20,13 @@ public class AIAACarController : AICarController {
         {
             RotateGunTowardsTarget();
             ShootOnRay();
+            Reload();
         }
     }
     /// <summary>
     /// 대공포를 타겟을 향해 추적
     /// </summary>
-    void RotateGunTowardsTarget()
+    private void RotateGunTowardsTarget()
     {
         Vector3 targetDir = target.transform.position - gun.transform.position;
 
@@ -38,7 +39,7 @@ public class AIAACarController : AICarController {
     /// <summary>
     /// 레이케스팅 성공시 쏘기
     /// </summary>
-    void ShootOnRay()
+    private void ShootOnRay()
     {
         Debug.DrawRay(sight.transform.position,
              sight.transform.TransformDirection(Vector3.forward) * gunRange,
@@ -55,8 +56,15 @@ public class AIAACarController : AICarController {
             }
         }
     }
-    void Shoot()
+    private void Shoot()
     {
         gun.PullTrigger();
+    }
+    private void Reload()
+    {
+        if (gun.guns[0].loadedCapacity <= 0)
+        {
+            gun.Reload();
+        }
     }
 }

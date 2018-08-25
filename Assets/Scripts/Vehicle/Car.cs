@@ -28,9 +28,9 @@ public class Car : Vehicle
     /// 맵 끝에 닿았는지 검사하여 운동 방향 바꿈.
     /// </summary>
     /// <param name="collision"></param>
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Wall"))
         {
             direction = direction * -1;
         }
