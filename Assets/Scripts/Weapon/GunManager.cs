@@ -7,9 +7,11 @@ public class GunManager : MonoBehaviour
     public List<Gun> guns = new List<Gun>();
     public float reloadTime = 0f;
     private bool isCanFire = true;
+
+
     private void Awake()
     {
-        if(guns.Count ==0)
+        if (guns.Count == 0)
         {
             Debug.LogError("GunManager : guns 비어있음");
         }
@@ -17,14 +19,12 @@ public class GunManager : MonoBehaviour
 
     public void PullTrigger()
     {
-        if (isCanFire)
+        for (int i = 0; i < guns.Count; i++)
         {
-            for (int i = 0; i < guns.Count; i++)
-            {
-                guns[i].StartCoroutine("Fire");
-            }
+            guns[i].StartCoroutine("Fire");
         }
     }
+
     public void Reload()
     {
         StartCoroutine("StartReload");

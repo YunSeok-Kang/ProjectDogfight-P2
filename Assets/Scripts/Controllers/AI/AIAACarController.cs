@@ -2,15 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIAACarController : MonoBehaviour {
+public class AIAACarController : AICarController {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public GameObject target = null;
+    public GunManager gun = null;
+    public float rotateSpeed = 10f;
+    public float gunRange = 100f;
+    public bool isCanThrust = true;
+
+    protected virtual void Update()
+    {
+        if(isCanThrust)
+        {
+            car.Thrust();
+        }
+        if(target != null)
+        {
+            RotateGunTowardsTarget();
+            ShootOnRay();
+        }
+    }
+    /// <summary>
+    /// 대공포를 타겟을 향해 추적
+    /// </summary>
+    void RotateGunTowardsTarget()
+    {
+        Vector3 targetDir = target.transform.position - gun.transform.position;
+
+        float step = rotateSpeed * Time.deltaTime;
+
+        Vector3 newDir = Vector3.RotateTowards(gun.transform.forward, targetDir, step, 0.0f);
+        gun.transform.rotation = Quaternion.LookRotation(newDir);
+    }
+
+    /// <summary>
+    /// 레이케스팅 성공시 쏘기
+    /// </summary>
+    void ShootOnRay()
+    {
+        Debug.DrawRay(sight.transform.position,
+             sight.transform.TransformDirection(Vector3.forward) * gunRange,
+             Color.red);
+
+        RaycastHit hit;
+        if (Physics.Raycast(sight.transform.position,
+            sight.transform.TransformDirection(Vector3.forward),
+            out hit, gunRange))
+        {
+            if(hit.transform.gameObject == target)
+            {
+                Shoot();    
+            }
+        }
+    }
+    void Shoot()
+    {
+        gun.PullTrigger();
+    }
 }

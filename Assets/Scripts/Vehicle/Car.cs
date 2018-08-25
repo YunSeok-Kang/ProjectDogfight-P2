@@ -6,31 +6,22 @@ public class Car : Vehicle
 {
     public float speed;
     [SerializeField]
-    private Vector3 towardVector;
-
+    private float direction = 1;
 
 
     protected override bool Init()
     {
         base.Init();
-        towardVector = transform.forward;
         return true;
     }
 
-    private new void Update()
-    {
-        Thrust(towardVector, speed);
-    }
-
-
-
+ 
     /// <summary>
     /// direction 향해 움직이는 함수
     /// </summary>
-    /// <param name="direction"></param>
-    public void Thrust(Vector3 direction, float speed)
+    public void Thrust()
     {
-        transform.localPosition += direction * speed * Time.deltaTime;
+        transform.position += transform.forward * direction  * speed * Time.deltaTime;
     }
 
     /// <summary>
@@ -41,7 +32,7 @@ public class Car : Vehicle
     {
         if(collision.gameObject.CompareTag("Wall"))
         {
-            towardVector = towardVector * -1;
+            direction = direction * -1;
         }
     }
 }

@@ -12,3 +12,4 @@ public class AmmoEffectDamageSingleTarget : AmmoEffect
         base.Effect(target);
     }
 }
+ 

@@ -14,6 +14,13 @@ public class Gun : Weapon
     [Header("Chamber Performance")]
     public float delayOfFire;
 
+    [Header("Firing Mode")]
+    public bool isFireBurst = false;
+
+    [Header("Burst Options")]
+    public int burstRounds = 0;
+    public float delayAfterBurst = 0f;
+
     [Header("Muzzle")]
     public Transform muzzle;
 
@@ -24,7 +31,7 @@ public class Gun : Weapon
 
     protected override bool Init()
     {
-        if(isLoadedOnStart)
+        if (isLoadedOnStart)
         {
             loadedCapacity = maxCapacity;
         }
@@ -34,31 +41,61 @@ public class Gun : Weapon
         return true;
     }
 
-    public IEnumerator Fire()
+    public void Fire()
+    {
+        StartCoroutine("StartFire");
+    }
+
+    private IEnumerator StartFire()
     {
         if (isCanFire)
         {
-            if (loadedCapacity> 0 || isUnlimited)
-            {
-                SpawnAmmo();
-                if (!isUnlimited)
-                {
-                    loadedCapacity--;
-                }
-            }
             isCanFire = false;
-            yield return new WaitForSeconds(delayOfFire);
+            if (isFireBurst)
+            {
+                StartCoroutine("FireBurstShot");
+                yield return new WaitForSeconds(delayAfterBurst);
+            }
+            else
+            {
+                StartCoroutine("FireSingleShot");
+                yield return new WaitForSeconds(delayOfFire);
+            }
             isCanFire = true;
         }
-        else
-        {
-            yield return null;
-        }
     }
+    private IEnumerator FireSingleShot()
+    {
+        SpawnAmmoByCapacity();
+        yield return null;
+    }
+    private IEnumerator FireBurstShot()
+    {
+        for (int i = 0; i < burstRounds; i++)
+        {
+            SpawnAmmoByCapacity();
+            yield return new WaitForSeconds(delayOfFire);
+        }
+        yield return null;
+    }
+
     public void Reload()
     {
         loadedCapacity = maxCapacity;
     }
+
+    private void SpawnAmmoByCapacity()
+    {
+        if (loadedCapacity > 0 || isUnlimited)
+        {
+            SpawnAmmo();
+            if (!isUnlimited)
+            {
+                loadedCapacity--;
+            }
+        }
+    }
+
     private void SpawnAmmo()
     {
         var newAmmo =
