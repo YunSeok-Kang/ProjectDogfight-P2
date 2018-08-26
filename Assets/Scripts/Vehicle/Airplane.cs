@@ -48,7 +48,7 @@ public class Airplane : Vehicle
     private float _OriginalAngularDrag;  // The angular drag when the scene starts.
     private float _AeroFactor;
 
-    private Rigidbody2D _Rigidbody;
+    private Rigidbody _Rigidbody;
 
     public float liftPower = 0f;
     public float minEnginePower = 50f;
@@ -62,23 +62,16 @@ public class Airplane : Vehicle
 
     private void Start()
     {
-        _Rigidbody = GetComponent<Rigidbody2D>();
+        _Rigidbody = GetComponent<Rigidbody>();
         // Store original drag settings, these are modified during flight.
         _OriginalDrag = _Rigidbody.drag;
         _OriginalAngularDrag = _Rigidbody.angularDrag;
 
-        Vector2 currentVelo = _Rigidbody.velocity;
-        currentVelo.x = 150;
+        Vector3 currentVelo = _Rigidbody.velocity;
+        currentVelo.z = 150;
 
         _Rigidbody.velocity = currentVelo;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     public void Move(float pitchInput, float throttleInput, bool airBrakes)
     {
@@ -121,7 +114,7 @@ public class Airplane : Vehicle
     {
         // Calculate roll & pitch angles
         // Calculate the flat forward direction (with no y component).
-        var flatForward = transform.right;
+        var flatForward = transform.forward;
         flatForward.y = 0;
         // If the flat forward vector is non-zero (which would only happen if the plane was pointing exactly straight upwards)
         if (flatForward.sqrMagnitude > 0)
@@ -129,7 +122,9 @@ public class Airplane : Vehicle
             flatForward.Normalize();
             // calculate current pitch angle
             var localFlatForward = transform.InverseTransformDirection(flatForward);
-            PitchAngle = Mathf.Atan2(localFlatForward.y, localFlatForward.x);
+            PitchAngle = Mathf.Atan2(localFlatForward.y, localFlatForward.z);
+
+            // Roll Angle은 생략함.
         }
     }
 
@@ -138,7 +133,7 @@ public class Airplane : Vehicle
     {
         // Forward speed is the speed in the planes's forward direction (not the same as its velocity, eg if falling in a stall)
         var localVelocity = transform.InverseTransformDirection(_Rigidbody.velocity);
-        ForwardSpeed = Mathf.Max(0, Mathf.Abs(localVelocity.x));
+        ForwardSpeed = Mathf.Max(0, Mathf.Abs(localVelocity.z));
     }
 
 
@@ -148,7 +143,7 @@ public class Airplane : Vehicle
         Throttle = Mathf.Clamp01(Throttle + ThrottleInput * Time.deltaTime * _throttleChangeSpeed);
 
         // current engine power is just:
-        EnginePower = Throttle * _maxEnginePower;
+        EnginePower = Throttle * _maxEnginePower * CalculateEngineEfficiency();
     }
 
 
@@ -171,12 +166,12 @@ public class Airplane : Vehicle
         if (_Rigidbody.velocity.magnitude > 0)
         {
             // compare the direction we're pointing with the direction we're moving:
-            _AeroFactor = Vector3.Dot(transform.right, _Rigidbody.velocity.normalized);
+            _AeroFactor = Vector3.Dot(transform.forward, _Rigidbody.velocity.normalized);
             // multipled by itself results in a desirable rolloff curve of the effect
             _AeroFactor *= _AeroFactor;
             // Finally we calculate a new velocity by bending the current velocity direction towards
             // the the direction the plane is facing, by an amount based on this aeroFactor
-            var newVelocity = Vector3.Lerp(_Rigidbody.velocity, transform.right * ForwardSpeed,
+            var newVelocity = Vector3.Lerp(_Rigidbody.velocity, transform.forward * ForwardSpeed,
                                            _AeroFactor * ForwardSpeed * _aerodynamicEffect * Time.deltaTime);
             _Rigidbody.velocity = newVelocity;
             Debug.Log("LerpValue: " + _AeroFactor * ForwardSpeed * _aerodynamicEffect * Time.deltaTime);
@@ -184,9 +179,12 @@ public class Airplane : Vehicle
 
             // also rotate the plane towards the direction of movement - this should be a very small effect, but means the plane ends up
             // pointing downwards in a stall
-            _Rigidbody.rotation = Quaternion.Slerp(Quaternion.Euler(transform.localRotation.x, 0, _Rigidbody.rotation),
-                                                  Quaternion.LookRotation(_Rigidbody.velocity, transform.up),
-                                                  _aerodynamicEffect * Time.deltaTime).eulerAngles.z;
+            //_Rigidbody.rotation = Quaternion.Slerp(Quaternion.Euler(transform.localRotation.x, 0, _Rigidbody.rotation),
+            //                                      Quaternion.LookRotation(_Rigidbody.velocity, transform.up),
+            //                                      _aerodynamicEffect * Time.deltaTime).eulerAngles.z;
+            _Rigidbody.rotation = Quaternion.Slerp(_Rigidbody.rotation,
+                                                      Quaternion.LookRotation(_Rigidbody.velocity, transform.up),
+                                                      _aerodynamicEffect * Time.deltaTime);
         }
     }
 
@@ -197,7 +195,7 @@ public class Airplane : Vehicle
         // we accumulate forces into this variable:
         var forces = Vector3.zero;
         // Add the engine power in the forward direction
-        forces += EnginePower * transform.right;
+        forces += EnginePower * transform.forward;
         // The direction that the lift force is applied is at right angles to the plane's velocity (usually, this is 'up'!)
         var liftDirection = Vector3.Cross(_Rigidbody.velocity, transform.right).normalized;
         // The amount of lift drops off as the plane increases speed - in reality this occurs as the pilot retracts the flaps
@@ -215,8 +213,24 @@ public class Airplane : Vehicle
 
     private void CalculateTorque()
     {
-        var torque = PitchInput * _pitchEffect;
+        var torque = Vector3.zero;
+        torque = PitchInput * _pitchEffect * transform.right;
 
         _Rigidbody.AddTorque(torque * ForwardSpeed * _AeroFactor * _torqueFactor);
+    }
+
+    private float CalculateEngineEfficiency()
+    {
+        float currentAltitude = transform.localPosition.y;
+        float engineEfficiency = 1f;
+
+
+        // 엔진 출력이 저하하기 시작하는 고도에 도달했으면
+        if (altitudePhase1Start < currentAltitude)
+        {
+            engineEfficiency = Mathf.Lerp(altitudePhase1Start, altitudePhase2Start, currentAltitude);
+        }
+
+        return engineEfficiency;
     }
 }
