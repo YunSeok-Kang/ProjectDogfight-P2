@@ -6,7 +6,7 @@ public class Car : Vehicle
 {
     public float speed;
     [SerializeField]
-    private float direction = 1;
+    private float _direction = 1;
 
 
     protected override bool Init()
@@ -21,7 +21,7 @@ public class Car : Vehicle
     /// </summary>
     public void Thrust()
     {
-        transform.position += transform.forward * direction  * speed * Time.deltaTime;
+        transform.position += transform.forward * _direction * speed * Time.deltaTime;
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public class Car : Vehicle
     {
         if (other.gameObject.CompareTag("Wall"))
         {
-            direction = direction * -1;
+            _direction = _direction * -1;
         }
     }
 }

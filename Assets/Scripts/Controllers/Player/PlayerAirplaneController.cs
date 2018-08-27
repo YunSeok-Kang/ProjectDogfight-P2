@@ -6,24 +6,31 @@ using UnityEngine;
 public class PlayerAirplaneController : PlayerController
 {
     private Airplane _playerAirplane = null;
-
+    [SerializeField]
+    private GunManager _gunManger = null;
 	// Use this for initialization
-	void Start ()
+	private void Start ()
     {
 		if (_playerAirplane == null)
         {
             _playerAirplane = gameObject.GetComponent<Airplane>();
         }
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    private void Update()
     {
-        //CrossPlatformInputManager.GetAxis("Vertical");
-        //bool airBrakes = CrossPlatformInputManager.GetButton("Fire1");
+        GetUserGunControl();
     }
 
-    float GetUserPitch()
+    private void FixedUpdate()
+    {
+        float pitchingValue = GetUserPitch();
+
+        _playerAirplane.Move(pitchingValue, 1, false);
+
+    }
+
+    private float GetUserPitch()
     {
         float pitchingValue = Input.GetAxis("Vertical");
         pitchingValue = Mathf.Clamp(pitchingValue, -1, 1);
@@ -34,10 +41,11 @@ public class PlayerAirplaneController : PlayerController
         //CrossPlatformInputManager.GetAxis("Vertical");
     }
 
-    private void FixedUpdate()
+    private void GetUserGunControl()
     {
-        float pitchingValue = GetUserPitch();
-
-        _playerAirplane.Move(pitchingValue, 1, false);   
+        if(Input.GetButton("Fire1"))
+        {
+            _gunManger.PullTrigger();
+        }
     }
 }

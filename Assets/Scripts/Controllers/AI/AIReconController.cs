@@ -4,15 +4,4 @@ using UnityEngine;
 
 public class AIReconController : AIAirplaneController
 {
-	// Use this for initialization
-	void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
 }

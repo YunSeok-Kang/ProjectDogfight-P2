@@ -24,8 +24,8 @@ public class Gun : Weapon
     [Header("Muzzle")]
     public Transform muzzle;
 
-    private bool isCanFire = true;
-    private string enemyTag;
+    private bool _isCanFire = true;
+    private string _enemyTag;
 
 
 
@@ -37,7 +37,7 @@ public class Gun : Weapon
         }
 
         string thisTag = transform.root.GetComponent<Vehicle>().tag;
-        enemyTag = (thisTag == "Player") ? "Enemy" : "Player";
+        _enemyTag = (thisTag == "Player") ? "Enemy" : "Player";
         return true;
     }
 
@@ -48,9 +48,9 @@ public class Gun : Weapon
 
     private IEnumerator StartFire()
     {
-        if (isCanFire)
+        if (_isCanFire)
         {
-            isCanFire = false;
+            _isCanFire = false;
             if (isFireBurst)
             {
                 StartCoroutine("FireBurstShot");
@@ -61,7 +61,7 @@ public class Gun : Weapon
                 StartCoroutine("FireSingleShot");
                 yield return new WaitForSeconds(delayOfFire);
             }
-            isCanFire = true;
+            _isCanFire = true;
         }
     }
     private IEnumerator FireSingleShot()
@@ -103,6 +103,6 @@ public class Gun : Weapon
            muzzle.position,
            muzzle.rotation);
         newAmmo.GetComponent<AmmoPropellant>().Propel(muzzle.forward);
-        newAmmo.GetComponent<Ammo>().enemyTag = this.enemyTag;
+        newAmmo.GetComponent<Ammo>().enemyTag = this._enemyTag;
     }
 }

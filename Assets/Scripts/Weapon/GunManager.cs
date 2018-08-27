@@ -6,8 +6,8 @@ public class GunManager : MonoBehaviour
 {
     public List<Gun> guns = new List<Gun>();
     public float reloadTime = 0f;
-    private bool isCanFire = true;
-    private bool isReloading = false;
+    private bool _isCanFire= true;
+    private bool _isReloading = false;
 
 
     private void Awake()
@@ -20,7 +20,7 @@ public class GunManager : MonoBehaviour
 
     public void PullTrigger()
     {
-        if (isCanFire)
+        if (_isCanFire)
         {
             for (int i = 0; i < guns.Count; i++)
             {
@@ -31,15 +31,15 @@ public class GunManager : MonoBehaviour
 
     public void Reload()
     {
-        if (isReloading == false)
+        if (_isReloading == false)
         {
             StartCoroutine("StartReload");
         }
     }
     private IEnumerator StartReload()
     {
-        isReloading = true;
-        isCanFire = false;
+        _isReloading = true;
+        _isCanFire= false;
 
         yield return new WaitForSeconds(reloadTime);
 
@@ -47,8 +47,8 @@ public class GunManager : MonoBehaviour
         {
             guns[i].Reload();
         }
-        isCanFire = true;
-        isReloading = false;
+        _isCanFire= true;
+        _isReloading = false;
 
         yield return null;
     }

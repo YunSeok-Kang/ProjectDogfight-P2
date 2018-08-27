@@ -6,7 +6,7 @@ public class PlayerCameraManager : MonoBehaviour
 {
 
     public GameObject target;
-    private Transform targetTrans;
+    private Transform _targetTrans;
 
 
     [Header("Speed")]
@@ -28,11 +28,11 @@ public class PlayerCameraManager : MonoBehaviour
 
     [Header("For Checkout")]
     [SerializeField]
-    private Vector3 currentOffset;
+    private Vector3 _currentOffset;
     [SerializeField]
-    private float currentForward;
+    private float _currentForward;
     [SerializeField]
-    private Quaternion currentAngle;
+    private Quaternion _currentAngle;
 
 
 
@@ -40,7 +40,7 @@ public class PlayerCameraManager : MonoBehaviour
     void Start()
     {
         //baseOffset = transform.position - targetToFollow.transform.position;
-        targetTrans = target.transform;
+        _targetTrans = target.transform;
         maxAltMinusMinAlt = maxAltitude - minAltitude;
     }
     void FixedUpdate()
@@ -48,11 +48,11 @@ public class PlayerCameraManager : MonoBehaviour
         if (target != null)
         {
             //확대축소 비율 구하기
-            float magnitudeFromTop = maxAltitude - targetTrans.position.y;
-            float magnitudeFromBottom = Mathf.Abs(minAltitude - targetTrans.position.y);
+            float magnitudeFromTop = maxAltitude - _targetTrans.position.y;
+            float magnitudeFromBottom = Mathf.Abs(minAltitude - _targetTrans.position.y);
 
             Vector3 newCameraPosition;
-            newCameraPosition = targetTrans.position;
+            newCameraPosition = _targetTrans.position;
             newCameraPosition += GetCameraForwardByMagnitude(magnitudeFromBottom);
             newCameraPosition += GetCameraOffsetByMagnitude(magnitudeFromTop);
 
@@ -94,8 +94,8 @@ public class PlayerCameraManager : MonoBehaviour
         //클램프
        float clampedForward;
        clampedForward = Mathf.Clamp(calculatedForward, smaller, bigger);
-       currentForward = clampedForward;
-       return targetTrans.forward * clampedForward;
+       _currentForward = clampedForward;
+       return _targetTrans.forward * clampedForward;
     }
 
     private Vector3 GetCameraOffsetByMagnitude(float magnitude)
@@ -112,7 +112,7 @@ public class PlayerCameraManager : MonoBehaviour
         float clampedZ = Mathf.Clamp(calculatedOffset.z, minOffset.z, maxOffset.z); //Z는 커질때마다 -로 뒤로 물러나므로, max와 min이 바뀌어야함.
         calculatedOffset = new Vector3(0, clampedY, clampedZ);
 
-        return currentOffset =calculatedOffset;
+        return _currentOffset =calculatedOffset;
     }
 
     private Quaternion GetCameraAngleByMagnitude(float magnitude)
@@ -128,6 +128,6 @@ public class PlayerCameraManager : MonoBehaviour
         calculatedZDgree = Mathf.Clamp(calculatedXDgree, minAngle.z, maxAngle.z);
 
         Quaternion newQuaternion = Quaternion.Euler(calculatedXDgree, calculatedYDgree, calculatedZDgree);
-        return currentAngle = newQuaternion;
+        return _currentAngle = newQuaternion;
     }
 }
