@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114287662922935728}
   - component: {fileID: 114210393434466496}
   - component: {fileID: 114356399306422452}
-  - component: {fileID: 114645211542386646}
+  - component: {fileID: 114818871600511716}
   m_Layer: 0
   m_Name: Naltan
   m_TagString: Untagged
@@ -140,7 +140,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1413574292632272}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ee26202cfae7c468d603f846c19110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hp: 0
   lifetime: 5
   enemyTag: Enemy
 --- !u!114 &114356399306422452
@@ -181,8 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80634d9a3357c93448502cebb3642ebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1000
---- !u!114 &114645211542386646
+  force: 6000
+--- !u!114 &114818871600511716
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,6 +191,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1413574292632272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c39f843fda3cce499a76a8615865dde, type: 3}
+  m_Script: {fileID: 11500000, guid: 71f58e314795d1f40b5a1808521cedd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
