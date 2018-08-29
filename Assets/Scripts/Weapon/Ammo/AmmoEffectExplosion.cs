@@ -53,7 +53,7 @@ public class AmmoEffectExplosion : AmmoEffect
             {
                 continue;
             }
-            var voxObject = hit.gameObject.GetComponent<VoxObject>();
+            var voxObject = hit.transform.root.GetComponent<VoxObject>();
             if (voxObject != null)
             {
                 GiveDamageByReductionRate(voxObject,
