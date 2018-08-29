@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 198586277194878790}
   - component: {fileID: 199952776961097274}
   m_Layer: 0
-  m_Name: SmallFlakExplosionSmoke
+  m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4908,7 +4908,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2

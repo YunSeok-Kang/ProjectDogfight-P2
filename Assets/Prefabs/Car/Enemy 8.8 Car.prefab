@@ -323,7 +323,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1292609931854320}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 100.96, y: 105.23, z: 0}
+  m_LocalPosition: {x: -10.540001, y: 102.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4873373930245600}
@@ -905,7 +905,7 @@ MonoBehaviour:
   isLoadedOnStart: 1
   maxCapacity: 1
   loadedCapacity: 0
-  ammoType: {fileID: 1413574292632272, guid: 5ecdfd738fd564d499b22fa30415a707, type: 2}
+  ammoType: {fileID: 1389893988640730, guid: 5625589eaf8d0224a9e4ea1b1db7b7c1, type: 2}
   delayOfFire: 0.1
   isFireBurst: 0
   burstRounds: 3
@@ -943,6 +943,6 @@ MonoBehaviour:
   target: {fileID: 0}
   gun: {fileID: 114076943811795854}
   rotateSpeed: 0.25
-  gunRange: 100
+  gunRange: 300
   isCanThrust: 1
   siegeDistance: 50
