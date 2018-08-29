@@ -47,6 +47,7 @@ public class AIAirplaneController : AIController
         if (_target == null)
         {
             _AIAirplane.Move(0, 0, false);
+            return;
         }
 
         // make the plane wander from the path, useful for making the AI seem more human, less robotic.
