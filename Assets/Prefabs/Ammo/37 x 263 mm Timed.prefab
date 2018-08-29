@@ -23,8 +23,9 @@ GameObject:
   - component: {fileID: 65163040633780602}
   - component: {fileID: 114431622650007114}
   - component: {fileID: 114661648870980712}
-  - component: {fileID: 114394168755729346}
+  - component: {fileID: 114989187590887484}
   - component: {fileID: 114551994689413758}
+  - component: {fileID: 114394168755729346}
   m_Layer: 0
   m_Name: 37 x 263 mm Timed
   m_TagString: Untagged
@@ -69,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1920554612462172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5836787, y: -3.231496, z: 9.97}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4034486269526654}
@@ -199,3 +200,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 198238372460214434, guid: e2c9678ba1647a04b8689e4b29fb77b8,
     type: 2}
+  centerDamage: 20
+  centerRadius: 1
+  middleRadius: 1.5
+  totalRadius: 2
+--- !u!114 &114989187590887484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920554612462172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71f58e314795d1f40b5a1808521cedd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

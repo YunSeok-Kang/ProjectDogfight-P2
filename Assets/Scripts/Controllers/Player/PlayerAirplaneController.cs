@@ -35,7 +35,7 @@ public class PlayerAirplaneController : PlayerController
         float pitchingValue = Input.GetAxis("Vertical");
         pitchingValue = Mathf.Clamp(pitchingValue, -1, 1);
 
-        Debug.Log("Pitching Value: " + pitchingValue);
+       // Debug.Log("Pitching Value: " + pitchingValue);
         return pitchingValue;
 
         //CrossPlatformInputManager.GetAxis("Vertical");

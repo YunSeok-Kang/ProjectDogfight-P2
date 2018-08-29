@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 54901760305385350}
   - component: {fileID: 65411459076820306}
   - component: {fileID: 114057580761779942}
-  - component: {fileID: 114872369700677690}
+  - component: {fileID: 114460523492900878}
   - component: {fileID: 114504455942812684}
+  - component: {fileID: 114746360198114608}
   - component: {fileID: 114091020947438828}
   m_Layer: 0
   m_Name: 8.8 Timed Explosive Ammo
@@ -69,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1389893988640730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5836787, y: -3.231496, z: 9.97}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4157766074065658}
@@ -171,6 +172,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 12000
+--- !u!114 &114460523492900878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1389893988640730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ccfd978cb0c3940aafdad782f02a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionEffect: {fileID: 198098909632117504, guid: b3410ae30ece06345b88f6d909b2948a,
+    type: 2}
+  centerDamage: 100
+  centerRadius: 4
+  middleRadius: 7
+  totalRadius: 10
 --- !u!114 &114504455942812684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,7 +204,7 @@ MonoBehaviour:
   isUsingRandomTriggerTime: 1
   minTriggerTime: 1
   maxTriggerTime: 1.15
---- !u!114 &114872369700677690
+--- !u!114 &114746360198114608
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,8 +212,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1389893988640730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5ccfd978cb0c3940aafdad782f02a50, type: 3}
+  m_Script: {fileID: 11500000, guid: 71f58e314795d1f40b5a1808521cedd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionEffect: {fileID: 198098909632117504, guid: b3410ae30ece06345b88f6d909b2948a,
-    type: 2}

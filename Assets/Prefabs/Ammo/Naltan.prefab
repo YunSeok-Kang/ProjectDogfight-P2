@@ -40,8 +40,8 @@ GameObject:
   - component: {fileID: 65786809979866258}
   - component: {fileID: 114287662922935728}
   - component: {fileID: 114210393434466496}
-  - component: {fileID: 114356399306422452}
   - component: {fileID: 114818871600511716}
+  - component: {fileID: 114356399306422452}
   m_Layer: 0
   m_Name: Naltan
   m_TagString: Untagged

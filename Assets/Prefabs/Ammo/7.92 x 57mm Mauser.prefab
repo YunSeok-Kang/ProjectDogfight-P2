@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 65918186497394994}
   - component: {fileID: 114135912810922330}
   - component: {fileID: 114999092433914734}
-  - component: {fileID: 114729264597671078}
   - component: {fileID: 114787227798353290}
+  - component: {fileID: 114729264597671078}
   m_Layer: 0
   m_Name: 7.92 x 57mm Mauser
   m_TagString: Untagged

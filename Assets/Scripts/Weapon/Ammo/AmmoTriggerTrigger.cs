@@ -9,6 +9,10 @@ public class AmmoTriggerTrigger : AmmoTrigger {
         {
             Trigger(other.gameObject);
         }
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            Trigger();
+        }
     }
 }
 

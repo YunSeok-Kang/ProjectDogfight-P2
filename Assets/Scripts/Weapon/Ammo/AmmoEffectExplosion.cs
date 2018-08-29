@@ -37,6 +37,11 @@ public class AmmoEffectExplosion : AmmoEffect
         Explosion();
         base.Effect();
     }
+    public override void Effect(GameObject target)
+    {
+        Explosion();
+        base.Effect();
+    }
     protected virtual void Explosion()
     {
         CreateExplosionEffect();
@@ -44,12 +49,16 @@ public class AmmoEffectExplosion : AmmoEffect
         Collider[] colliders = Physics.OverlapSphere(transform.position, totalRadius);
         foreach (Collider hit in colliders)
         {
-            if (hit == this.gameObject)
+            if (hit.gameObject == this.gameObject)
             {
                 continue;
             }
-            GiveDamageByReductionRate(hit.gameObject,
-            CalculateDamageReductionRateByDistance(hit.gameObject));
+            var voxObject = hit.gameObject.GetComponent<VoxObject>();
+            if (voxObject != null)
+            {
+                GiveDamageByReductionRate(voxObject,
+                CalculateDamageReductionRateByDistance(hit.gameObject));
+            }
         }
     }
     private void CreateExplosionEffect()
@@ -78,8 +87,8 @@ public class AmmoEffectExplosion : AmmoEffect
             return 0.25f;
         }
     }
-    private void GiveDamageByReductionRate(GameObject other, float reduction)
+    private void GiveDamageByReductionRate(VoxObject other, float reduction)
     {
-        other.GetComponent<VoxObject>().HP -= centerDamage * reduction;
+        other.HP -= centerDamage * reduction;
     }
 }

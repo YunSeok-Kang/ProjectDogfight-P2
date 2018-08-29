@@ -174,8 +174,8 @@ public class Airplane : Vehicle
             var newVelocity = Vector3.Lerp(_Rigidbody.velocity, transform.forward * ForwardSpeed,
                                            _AeroFactor * ForwardSpeed * _aerodynamicEffect * Time.deltaTime);
             _Rigidbody.velocity = newVelocity;
-            Debug.Log("LerpValue: " + _AeroFactor * ForwardSpeed * _aerodynamicEffect * Time.deltaTime);
-            Debug.Log("DeltaTime: " + Time.deltaTime);
+           // Debug.Log("LerpValue: " + _AeroFactor * ForwardSpeed * _aerodynamicEffect * Time.deltaTime);
+           // Debug.Log("DeltaTime: " + Time.deltaTime);
 
             // also rotate the plane towards the direction of movement - this should be a very small effect, but means the plane ends up
             // pointing downwards in a stall
