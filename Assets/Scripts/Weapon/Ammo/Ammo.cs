@@ -7,8 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(AmmoPropellant))]
 public class Ammo : Weapon
 {
-    //public string enemyTag;
     public float lifetime = 5f;
+    [HideInInspector]
     public string enemyTag;
 
 	// Use this for initialization
