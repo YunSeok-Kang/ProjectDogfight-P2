@@ -24,7 +24,17 @@ public class GunManager : MonoBehaviour
         {
             for (int i = 0; i < guns.Count; i++)
             {
-                guns[i].StartCoroutine("Fire");
+                guns[i].Fire();
+            }
+        }
+    }
+    public void PullTrigger(GameObject target)
+    {
+        if (_isCanFire)
+        {
+            for (int i = 0; i < guns.Count; i++)
+            {
+                guns[i].Fire(target);
             }
         }
     }

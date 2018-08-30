@@ -24,8 +24,8 @@ public class Gun : Weapon
     [Header("Muzzle")]
     public Transform muzzle;
 
-    private bool _isCanFire = true;
-    private string _enemyTag;
+    protected bool _isCanFire = true;
+    protected string _enemyTag;
 
 
 
@@ -45,8 +45,11 @@ public class Gun : Weapon
     {
         StartCoroutine("StartFire");
     }
+    public virtual void Fire(GameObject target)
+    {
+    }
 
-    private IEnumerator StartFire()
+    protected IEnumerator StartFire()
     {
         if (_isCanFire)
         {
@@ -64,12 +67,12 @@ public class Gun : Weapon
             _isCanFire = true;
         }
     }
-    private IEnumerator FireSingleShot()
+    protected IEnumerator FireSingleShot()
     {
         SpawnAmmoByCapacity();
         yield return null;
     }
-    private IEnumerator FireBurstShot()
+    protected IEnumerator FireBurstShot()
     {
         for (int i = 0; i < burstRounds; i++)
         {
@@ -84,7 +87,7 @@ public class Gun : Weapon
         loadedCapacity = maxCapacity;
     }
 
-    private void SpawnAmmoByCapacity()
+    protected void SpawnAmmoByCapacity()
     {
         if (loadedCapacity > 0 || isUnlimited)
         {
@@ -96,7 +99,7 @@ public class Gun : Weapon
         }
     }
 
-    private void SpawnAmmo()
+    protected void SpawnAmmo()
     {
         var newAmmo =
            Instantiate(ammoType,

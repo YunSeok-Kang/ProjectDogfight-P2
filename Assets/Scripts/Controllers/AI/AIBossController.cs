@@ -6,9 +6,17 @@ public class AIBossController : AIController
 {
     public GameObject target;
     public GunManager mainGun;
+    public GunManager missilePlatform;
     public float mainGunRange;
     public float mainGunRotateSpeed;
+
+
     private void Update()
+    {
+        PatternTwo();
+        //PatternOne();   
+    }
+    private void PatternOne()
     {
         if (target != null)
         {
@@ -17,6 +25,17 @@ public class AIBossController : AIController
             Reload();
         }
     }
+    private void PatternTwo()
+    {
+        if(target !=null)
+        {
+            ShootMissle(target);
+        }
+    }
+    private void ShootMissle(GameObject target)
+    {
+        missilePlatform.PullTrigger(target);
+    }
     private void RotateGunTowardsTarget()
     {
         Vector3 targetDir = target.transform.position - mainGun.transform.position;
@@ -24,10 +43,7 @@ public class AIBossController : AIController
         float step = mainGunRotateSpeed * Time.deltaTime;
 
         Vector3 newDir = Vector3.RotateTowards(mainGun.transform.forward, targetDir, step, 0.0f);
-        Quaternion newRot = Quaternion.LookRotation(newDir);
-        mainGun.transform.rotation = (newRot);
-        Debug.Log(mainGun.transform.eulerAngles);
-        Debug.Log(mainGun.transform.localEulerAngles); 
+        mainGun.transform.rotation = Quaternion.LookRotation(newDir);
         mainGun.transform.eulerAngles = new Vector3(Mathf.Clamp(mainGun.transform.eulerAngles.x, 280, 360),
             Mathf.Clamp(mainGun.transform.eulerAngles.y, 0, 100), 0);
     }
