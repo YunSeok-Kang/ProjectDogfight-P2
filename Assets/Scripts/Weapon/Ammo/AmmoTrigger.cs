@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AmmoEffect))]
-public class AmmoTrigger : AmmoModel
+public abstract class AmmoTrigger : AmmoModel
 {
     protected AmmoEffect ammoEffect = null;
     protected Ammo ammo;

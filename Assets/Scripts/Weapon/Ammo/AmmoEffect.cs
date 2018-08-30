@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoEffect : AmmoModel
+public abstract class AmmoEffect : AmmoModel
 {
     public virtual void Effect()
     {
