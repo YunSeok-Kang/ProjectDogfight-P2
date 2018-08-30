@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198461124839232992}
   - component: {fileID: 199639081003844824}
   m_Layer: 0
-  m_Name: Plane_SecondSmoke
+  m_Name: Airplane Black Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
