@@ -116,11 +116,22 @@ public class VoxObject : MonoBehaviour {
         return true;
     }
 
-    protected virtual void VoxDestroy(float destroyDelay = 0f)
+    public void VoxDestroy(float destroyDelay = 0f)
     {
-        // 이펙트(있을 시 플레이)
-        
-        // 일정 시간 경과후 파괴
-        Destroy(gameObject, destroyDelay);
+        StartCoroutine("VoxDestroySchedule", destroyDelay);
+    }
+    private IEnumerator VoxDestroySchedule(float destroyDelay = 0f)
+    {
+        yield return new WaitForSeconds(destroyDelay);
+        VoxDestroyLogic();
+        yield return null;
+    }
+    /// <summary>
+    /// 파괴시 행동을 바꾸려면 이 함수를 변경
+    /// </summary>
+    /// <param name="destroyDelay"></param>
+    protected virtual void VoxDestroyLogic()
+    {
+        Destroy(gameObject);
     }
 }
