@@ -57,12 +57,6 @@ public class VoxObject : MonoBehaviour {
         }
     }
 
-    // Use this for initialization
-    private void Start ()
-    {
-        
-	}
-	
 	// Update is called once per frame
 	protected virtual void Update ()
     {

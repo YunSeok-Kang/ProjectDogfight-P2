@@ -58,7 +58,16 @@ public class Airplane : Vehicle
     public float altitudePhase1Start = 0f;
     public float altitudePhase2Start = 0f;
 
+    [Header("Smoke")]
+    public float graySmokeHP;
+    public float blackSmokeHP;
+    [SerializeField]
+    private ParticleSystem graySmokeParticle;
+    [SerializeField]
+    private ParticleSystem blackSmokeParticle;
 
+
+    
 
     private void Start()
     {
@@ -232,5 +241,31 @@ public class Airplane : Vehicle
         }
 
         return engineEfficiency;
+    }
+
+    protected override void OnDamaged(float damage)
+    {
+        if (HP <= blackSmokeHP)
+        {
+            graySmokeParticle.Stop();
+            blackSmokeParticle.Play();
+        }
+        else if (HP <= graySmokeHP)
+        {
+            graySmokeParticle.Play();
+            blackSmokeParticle.Stop();
+        }
+    }
+
+    protected override void OnHealed(float healPoint)
+    {
+        if (HP >= blackSmokeHP)
+        {
+            blackSmokeParticle.Stop();
+        }
+        if (HP >= graySmokeHP)
+        {
+            graySmokeParticle.Stop();
+        }
     }
 }
