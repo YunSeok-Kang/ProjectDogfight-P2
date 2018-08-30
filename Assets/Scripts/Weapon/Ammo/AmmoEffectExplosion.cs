@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AmmoEffectExplosion : AmmoEffect
 {
+    public ParticleSystem explosionEffect;
     public float centerDamage;
     public float centerRadius; // 100% 데미지 받는 폭심지
     public float middleRadius; // 50% 데미지 받는 존
@@ -43,6 +44,8 @@ public class AmmoEffectExplosion : AmmoEffect
     }
     protected virtual void Explosion()
     {
+        CreateExplosionEffect();
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, totalRadius);
         foreach (Collider hit in colliders)
         {
@@ -57,6 +60,12 @@ public class AmmoEffectExplosion : AmmoEffect
                 CalculateDamageReductionRateByDistance(hit.gameObject));
             }
         }
+    }
+    private void CreateExplosionEffect()
+    {
+        var particleEffect = Instantiate(explosionEffect, transform.position, transform.rotation);
+        float totalDuration = particleEffect.main.duration + particleEffect.subEmitters.GetSubEmitterSystem(0).main.duration;
+        Destroy(particleEffect.gameObject, totalDuration);
     }
 
     private float CalculateDamageReductionRateByDistance(GameObject other)

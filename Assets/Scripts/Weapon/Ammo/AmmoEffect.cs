@@ -4,14 +4,18 @@ using UnityEngine;
 
 public abstract class AmmoEffect : AmmoModel
 {
+    protected Ammo ammo;
+    private void Awake()
+    {
+        ammo = GetComponent<Ammo>();
+    }
     public virtual void Effect()
     {
-        Destroy(gameObject); //Vox Destroy??
+        ammo.VoxDestroy();
     }
 
     public virtual void Effect(GameObject target)
     {
-        Destroy(gameObject); //Vox Destroy??
+        ammo.VoxDestroy(); 
     }
-
 }

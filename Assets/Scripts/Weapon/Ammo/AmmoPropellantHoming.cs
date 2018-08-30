@@ -22,17 +22,16 @@ public class AmmoPropellantHoming : AmmoPropellant
     {
         while (true)
         {
-            var relativePos = targetTrans.position - this.transform.position;
-            if (target == null || Time.time >= (currentHomingTime + homingTime))
+            if (target != null)
             {
-                transform.Translate(0, 0, force * Time.deltaTime, Space.Self);
+                if (Time.time <= (currentHomingTime + homingTime))
+                {
+                    var relativePos = targetTrans.position - this.transform.position;
+                    var newRot = Quaternion.LookRotation(relativePos);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, newRot, homingSensitivity);
+                }
             }
-            else
-            {
-                var newRot = Quaternion.LookRotation(relativePos);
-                transform.rotation = Quaternion.Slerp(transform.rotation, newRot, homingSensitivity);
-                transform.Translate(0, 0, force * Time.deltaTime, Space.Self);
-            }
+            transform.Translate(0, 0, force * Time.deltaTime, Space.Self);
             yield return new WaitForFixedUpdate();
         }
     }
