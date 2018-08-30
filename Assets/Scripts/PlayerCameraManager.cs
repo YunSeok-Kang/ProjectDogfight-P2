@@ -10,7 +10,9 @@ public class PlayerCameraManager : MonoBehaviour
 
 
     [Header("Speed")]
+    [Range(0,1)]
     public float positionFollowSpeed;
+    [Range(0,1)]
     public float angleFollowSpeed;
     [Header("Altitude")]
     public float maxAltitude = 300f;
@@ -67,10 +69,10 @@ public class PlayerCameraManager : MonoBehaviour
         //부드럽게 전환
         transform.rotation = Quaternion.Slerp(transform.rotation,
             newAngle,
-            angleFollowSpeed * Time.deltaTime);
+            angleFollowSpeed);
         transform.position = Vector3.Slerp(transform.position,
             newPosition,
-            positionFollowSpeed * Time.deltaTime);
+            positionFollowSpeed);
     }
 
     private Vector3 GetCameraForwardByMagnitude(float magnitude)
