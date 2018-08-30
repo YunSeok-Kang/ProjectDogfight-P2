@@ -36,9 +36,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4816651424443644}
+  - component: {fileID: 65056966720859076}
   m_Layer: 0
   m_Name: Map
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -315,8 +316,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1212041102681846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -389, y: 38.1, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4140851895497150}
   - {fileID: 4348437130220106}
@@ -352,7 +353,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b35dcf1bbeaaeb44f8e6728267490eb6, type: 3}
+  - {fileID: 2100000, guid: 6abc17dd81ccc5d49a4eac8cf6f013f3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -387,7 +388,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 25c55d9f0f641354583d7eb19bcfef7f, type: 3}
+  - {fileID: 2100000, guid: bab3d6b3167c20745af536e6acb602af, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -422,7 +423,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a33dbbb7baf57894f97d241945d9973e, type: 3}
+  - {fileID: 2100000, guid: 56b583c3341422a4c99b81653ef84488, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -457,7 +458,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 97bbd7d9ac3483c44bdc3fc4d0584602, type: 3}
+  - {fileID: 2100000, guid: b5084f64126ea5442a80a149118e1459, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -505,3 +506,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1001639825134914}
   m_Mesh: {fileID: 4300000, guid: b35dcf1bbeaaeb44f8e6728267490eb6, type: 3}
+--- !u!65 &65056966720859076
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1212041102681846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 254.6, y: 39.77, z: 144.45}
+  m_Center: {x: 78, y: 1.58, z: 0}
