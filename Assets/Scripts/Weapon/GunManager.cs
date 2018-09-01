@@ -17,6 +17,11 @@ public class GunManager : MonoBehaviour
             Debug.LogError("GunManager : guns 비어있음");
         }
     }
+    
+    public void AddGun(Gun newGun)
+    {
+        guns.Add(newGun);
+    }
 
     public void PullTrigger()
     {

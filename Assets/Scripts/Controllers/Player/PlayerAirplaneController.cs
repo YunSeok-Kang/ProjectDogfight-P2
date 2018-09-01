@@ -8,7 +8,15 @@ public class PlayerAirplaneController : PlayerController
     private Airplane _playerAirplane = null;
     [SerializeField]
     private GunManager _gunManger = null;
-	// Use this for initialization
+    public GunManager GunManager
+    {
+        get
+        {
+            return _gunManger;
+        }
+    }
+    public Transform[] gunSpawnPositions = new Transform[2];
+    // Use this for initialization
 	private void Start ()
     {
 		if (_playerAirplane == null)
