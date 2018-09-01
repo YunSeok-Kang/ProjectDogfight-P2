@@ -30,8 +30,10 @@ public class AIAirplaneController : AIController
     // Used for generating random point on perlin noise so that the plane will wander off path slightly
     private float _randomPerlin;
 
-    [SerializeField]
-    private Transform _target = null;
+    //[SerializeField]
+    //private Transform _target = null;
+
+    public AIAirplaneRouteManager routeManager = null;
 
     // Use this for initialization
     private void Start()
@@ -40,19 +42,28 @@ public class AIAirplaneController : AIController
         {
             _AIAirplane = gameObject.GetComponent<Airplane>();
         }
+
+        if (routeManager == null)
+        {
+            Debug.LogError("AIAirplaneController: AI 비행기를 비행을 위해 routeManager 정보가 꼭 필요합니다.");
+        }
+
+        routeManager.targetController = this;
     }
 
     private void FixedUpdate()
     {
-        if (_target == null)
+        if (routeManager.CurrentTarget == null)
         {
+            Debug.Log("타겟 없음");
+
             _AIAirplane.Move(0, 0, false);
             return;
         }
 
         // make the plane wander from the path, useful for making the AI seem more human, less robotic.
         //Vector3 targetPos = _target.position + transform.right * (Mathf.PerlinNoise(Time.time * _lateralWanderSpeed, _randomPerlin) * 2 - 1) * _lateralWanderDistance;
-        Vector3 targetPos = _target.position;
+        Vector3 targetPos = routeManager.CurrentTarget.position;
 
         // adjust the yaw and pitch towards the target
         Vector3 localTarget = transform.InverseTransformPoint(targetPos);
@@ -67,6 +78,7 @@ public class AIAirplaneController : AIController
 
         // AI applies elevator control (pitch, rotation around x) to reach the target angle
         float pitchInput = changePitch * _pitchSensitivity;
+        Debug.Log("pitchingInput: " + pitchInput);
 
         // adjust how fast the AI is changing the controls based on the speed. Faster speed = faster on the controls.
         float currentSpeedEffect = 1 + (_AIAirplane.ForwardSpeed * _speedEffect);
