@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPower : Item {
+public class ItemPower : Item
+{
 
     public GameObject newGunToAttach;
     public float gunLastTime;
