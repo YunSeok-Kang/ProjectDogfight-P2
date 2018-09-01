@@ -56,15 +56,22 @@ public class AmmoEffectExplosion : AmmoEffect
             var voxObject = hit.transform.root.GetComponent<VoxObject>();
             if (voxObject != null)
             {
-                GiveDamageByReductionRate(voxObject,
-                CalculateDamageReductionRateByDistance(hit.gameObject));
+                if (voxObject.gameObject.CompareTag(ammo.enemyTag))
+                {
+                    GiveDamageByReductionRate(voxObject,
+                    CalculateDamageReductionRateByDistance(hit.gameObject));
+                }
             }
         }
     }
     private void CreateExplosionEffect()
     {
         var particleEffect = Instantiate(explosionEffect, transform.position, transform.rotation);
-        float totalDuration = particleEffect.main.duration + particleEffect.subEmitters.GetSubEmitterSystem(0).main.duration;
+        float totalDuration = particleEffect.main.duration;
+        for (int i = 0; i < particleEffect.subEmitters.subEmittersCount; i++)
+        {
+            totalDuration += particleEffect.subEmitters.GetSubEmitterSystem(i).main.duration;
+        }
         Destroy(particleEffect.gameObject, totalDuration);
     }
 
@@ -73,17 +80,17 @@ public class AmmoEffectExplosion : AmmoEffect
         float distance = Vector3.Distance(transform.position, other.transform.position);
         if (distance <= centerRadius) //100%
         {
-            //Debug.Log(other.name + " 100");
+           // Debug.Log(other.name + " 100");
             return 1f;
         }
         else if (distance <= middleRadius) //50%
         {
-           // Debug.Log(other.name + " 50");
+          //  Debug.Log(other.name + " 50");
             return 0.5f;
         }
         else //25%
         {
-           // Debug.Log(other.name + " 25");
+          //  Debug.Log(other.name + " 25");
             return 0.25f;
         }
     }

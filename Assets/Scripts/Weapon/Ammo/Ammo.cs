@@ -5,7 +5,6 @@ using UnityEngine;
 public class Ammo : Weapon
 {
     public float lifetime = 5f;
-    [HideInInspector]
     public string enemyTag;
     public ParticleSystem ammoDestructionParticle = null;
 

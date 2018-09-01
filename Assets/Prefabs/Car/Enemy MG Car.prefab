@@ -434,7 +434,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1743851379336862}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 142.8, y: 21.59, z: -0}
+  m_LocalPosition: {x: 107.6, y: 102.494995, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4361328976065850}
@@ -862,7 +862,7 @@ MonoBehaviour:
   isLoadedOnStart: 0
   maxCapacity: 0
   loadedCapacity: 0
-  ammoType: {fileID: 1413574292632272, guid: 5ecdfd738fd564d499b22fa30415a707, type: 2}
+  ammoType: {fileID: 1423486132295510, guid: 3309b662c7e322444a66901e36062c9f, type: 2}
   delayOfFire: 0.1
   isFireBurst: 1
   burstRounds: 5
@@ -941,7 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13be784c7732e464b9c572159605124c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 0
+  _hp: 50
   controller: {fileID: 0}
   speed: 10
   _direction: 1
