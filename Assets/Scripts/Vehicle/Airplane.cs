@@ -74,7 +74,7 @@ public class Airplane : Vehicle
     [SerializeField]
     private ParticleSystem blackSmokeParticle;
 
-    public AirplaneEvent onCrashedEvent = null;
+    public event AirplaneEvent onCrashedEvent = delegate { };
 
 
     private void Start()
@@ -279,11 +279,7 @@ public class Airplane : Vehicle
 
     protected virtual void OnCrashed()
     {
-        if (onCrashedEvent != null)
-        {
-            Debug.Log("실행");
-            onCrashedEvent(this);
-        }
+        onCrashedEvent(this);
 
         this.VoxDestroy();
     }

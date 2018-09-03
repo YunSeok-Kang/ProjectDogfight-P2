@@ -14,7 +14,7 @@ public class Vehicle : VoxObject
 {
     public Controller controller = null;
 
-    public VehicleEvent onHPZeroEvent = null;
+    public event VehicleEvent onHPZeroEvent = delegate { };
 
     protected override bool Init()
     {
@@ -47,8 +47,7 @@ public class Vehicle : VoxObject
 
     protected override void OnHPZero()
     {
-        if (onHPZeroEvent != null)
-            onHPZeroEvent(this);
+        onHPZeroEvent(this);
 
         base.OnHPZero();
     }

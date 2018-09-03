@@ -67,7 +67,7 @@ public class WaveManager : MonoBehaviour
         foreach (Vehicle vehicle in _enemyVehicles)
         {
             _totalWaveHP += vehicle.HP;
-            vehicle.onHPZeroEvent = VehicleDestroyEvent;
+            vehicle.onHPZeroEvent += VehicleDestroyEvent;
         }
 
         _currentWaveHP = _totalWaveHP;
