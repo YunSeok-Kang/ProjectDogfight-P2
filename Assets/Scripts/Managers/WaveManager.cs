@@ -122,6 +122,13 @@ public class WaveManager : MonoBehaviour
         //// MaxHP를 몰라서 이러한 연산이 불가능 함.
         //_currentWaveHP -= info.hp
 
+        // 점수 Component가 있으면 점수 추가.
+        MyScore scoreComponent = info.gameObject.GetComponent<MyScore>();
+        if (scoreComponent)
+        {
+            GameManager.Instance.score += scoreComponent.score;
+        }
+
         if (_isPreWave)
         {
             if (GetCurrentWaveHP() == 0f)
