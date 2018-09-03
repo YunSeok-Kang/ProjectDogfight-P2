@@ -10,6 +10,12 @@ public class AIAACarController : AICarController {
     public float gunRange = 100f;
     public bool isCanThrust = true;
 
+
+    protected virtual void Start()
+    {
+        target = FindObjectOfType<PlayerAirplaneController>().gameObject;
+    }
+
     protected virtual void Update()
     {
         if(isCanThrust)
