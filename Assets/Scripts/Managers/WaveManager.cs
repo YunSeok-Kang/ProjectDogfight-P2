@@ -63,7 +63,7 @@ public class WaveManager : MonoBehaviour
         GameObject tempWave = Instantiate(waveObject);
         tempWave.transform.parent = waveCreatingTransform;
 
-        _enemyVehicles = currentWave.GetComponentsInChildren<Vehicle>();
+        _enemyVehicles = tempWave.GetComponentsInChildren<Vehicle>();
         foreach (Vehicle vehicle in _enemyVehicles)
         {
             _totalWaveHP += vehicle.HP;
