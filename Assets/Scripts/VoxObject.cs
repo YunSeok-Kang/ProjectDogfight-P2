@@ -128,4 +128,30 @@ public class VoxObject : MonoBehaviour {
     {
         Destroy(gameObject);
     }
+
+    /// <summary>
+    /// Object를 Activate/Unactivate 시킬 때 취할 액션을 지정할 수 있음.
+    /// </summary>
+    /// <param name="activate"></param>
+    public virtual void ActivateObject(bool activate)
+    {
+        if (activate)
+        {
+            OnActivateObject();
+        }
+        else
+        {
+            OnUnActivateObject();
+        }
+    }
+
+    protected virtual void OnActivateObject()
+    {
+        this.enabled = true;
+    }
+
+    protected virtual void OnUnActivateObject()
+    {
+        this.enabled = false;
+    }
 }
