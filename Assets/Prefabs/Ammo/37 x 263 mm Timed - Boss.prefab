@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 198238372460214434, guid: e2c9678ba1647a04b8689e4b29fb77b8,
     type: 2}
-  centerDamage: 20
+  centerDamage: 10
   centerRadius: 1
   middleRadius: 1.5
   totalRadius: 2
@@ -215,3 +215,4 @@ MonoBehaviour:
   _hp: 0
   lifetime: 5
   enemyTag: Enemy
+  ammoDestructionParticle: {fileID: 0}

@@ -15,7 +15,10 @@ public class AmmoPropellantHoming : AmmoPropellant
     public override void Propel(Vector3 direction)
     {
         currentHomingTime = Time.time;
-        StartCoroutine("Homing", target.transform);
+        if (target != null)
+        {
+            StartCoroutine("Homing", target.transform);
+        }
     }
 
     private IEnumerator Homing(Transform targetTrans)

@@ -30,9 +30,12 @@ public class Car : Vehicle
     /// <param name="collision"></param>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Wall(Cars Only)"))
         {
-            _direction = _direction * -1;
+            var thisRot = this.gameObject.transform.rotation;
+            thisRot.y *= -1;
+            this.gameObject.transform.rotation = thisRot;
+           // _direction = _direction * -1;
         }
     }
 }

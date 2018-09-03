@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 198098909632117504, guid: b3410ae30ece06345b88f6d909b2948a,
     type: 2}
-  centerDamage: 100
+  centerDamage: 25
   centerRadius: 4
   middleRadius: 7
   totalRadius: 10

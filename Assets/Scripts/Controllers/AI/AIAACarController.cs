@@ -20,7 +20,7 @@ public class AIAACarController : AICarController {
     {
         if(isCanThrust)
         {
-          //  car.Thrust();
+            car.Thrust();
         }
         if(target != null)
         {

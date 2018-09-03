@@ -21,6 +21,8 @@ public class AIBossController : AIController
     private bool isShootingMissles= false;
     private void Start()
     {
+        target = FindObjectOfType<PlayerAirplaneController>().gameObject;
+
         if (target != null)
         {
             StartCoroutine("PatternManager");
