@@ -190,6 +190,6 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         restartCount++;
-        SceneManager.LoadScene("BasicScene-AddedStart"); // 씬 이름 제대로 적어야 함.
+        SceneManager.LoadScene("BasicScene"); // 씬 이름 제대로 적어야 함.
     }
 }
