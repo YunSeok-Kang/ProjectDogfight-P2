@@ -8,7 +8,6 @@ public class AIAACarController : AICarController {
     public GunManager gun = null;
     public float rotateSpeed = 10f;
     public float gunRange = 100f;
-    public bool isCanThrust = true;
 
 
     protected virtual void Start()
@@ -16,12 +15,10 @@ public class AIAACarController : AICarController {
         target = FindObjectOfType<PlayerAirplaneController>().gameObject;
     }
 
-    protected virtual void Update()
+    protected override void Update()
     {
-        if(isCanThrust)
-        {
-            car.Thrust();
-        }
+        base.Update();
+
         if(target != null)
         {
             RotateGunTowardsTarget();
