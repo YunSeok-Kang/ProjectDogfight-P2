@@ -5,7 +5,6 @@ using UnityEngine;
 public class Car : Vehicle
 {
     public float speed;
-    [SerializeField]
     private float _direction = 1;
 
 
@@ -25,7 +24,7 @@ public class Car : Vehicle
     }
 
     /// <summary>
-    /// 맵 끝에 닿았는지 검사하여 운동 방향 바꿈.
+    /// 맵 끝에 닿았는지 검사하여 각도 바꿈.
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerEnter(Collider other)
@@ -35,7 +34,6 @@ public class Car : Vehicle
             var thisRot = this.gameObject.transform.rotation;
             thisRot.y *= -1;
             this.gameObject.transform.rotation = thisRot;
-           // _direction = _direction * -1;
         }
     }
 }
