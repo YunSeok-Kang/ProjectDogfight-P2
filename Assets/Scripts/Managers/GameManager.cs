@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public enum GamePhase
@@ -49,12 +50,25 @@ public class GameManager : MonoBehaviour
     public GameObject loseResultPrefab = null;
 
     public GameStart gameStartObject = null;
+    public Text scoreUI = null;
 
     /// <summary>
     /// 스코어.
     /// 적 오브젝트를 파괴했을 때 얻어지는 Score는 WaveManager에서 처리한다.
     /// </summary>
-    public int score = 0;
+    private int _score = 0;
+    public int Score
+    {
+        get
+        {
+            return _score;
+        }
+        set
+        {
+            _score = value;
+            scoreUI.text = _score.ToString();
+        }
+    }
 
     private void Awake()
     {
@@ -69,6 +83,11 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log(plane);
+
+        if(scoreUI == null)
+        {
+            Debug.LogError("GameManager : 게임 UI를 찾을 수 없습니다.");
+        }
 
         plane.onHPZeroEvent += PlayerOnHPZero;
         plane.onCrashedEvent += PlayerOnCrashed;

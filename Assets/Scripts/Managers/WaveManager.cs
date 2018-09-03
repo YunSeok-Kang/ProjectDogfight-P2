@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class WaveManager : MonoBehaviour
 
     private bool _isPreWave = true;
 
+    [SerializeField]
     private Vehicle[] _enemyVehicles;
 
     private Queue<GameObject> _waveQueue = null;
@@ -43,6 +45,9 @@ public class WaveManager : MonoBehaviour
     public Transform waveCreatingTransform = null;
 
     public GameObject currentWave = null;
+
+    public Text waveUI = null;
+    private int waveCount = 1;
 
     private void Start()
     {
@@ -82,6 +87,7 @@ public class WaveManager : MonoBehaviour
         foreach (Vehicle vehicle in _enemyVehicles)
         {
             _currentWaveHP += vehicle.HP;
+            Debug.Log(_currentWaveHP);
         }
 
         return _currentWaveHP;
@@ -89,8 +95,10 @@ public class WaveManager : MonoBehaviour
 
     public void StartPreWave()
     {
+        waveUI.text = "Pre Wave";
         _isPreWave = true;
         CreateWave(preWave);
+        waveCount = 1;
     }
 
     private void StartNextWave()
@@ -107,12 +115,15 @@ public class WaveManager : MonoBehaviour
             // 다음 웨이브가 없다는 뜻
             // = 승리
             VoxEventManager.Instance.PostNotifycation("AllWavesWereCleared", null);
-
+            waveUI.text = "Winner!";
             return;
         }
 
         _isPreWave = false;
         CreateWave(nextWave);
+
+        waveUI.text = "Wave " + waveCount.ToString();
+        waveCount++;
     }
 
     // Vehicle state checking methods
@@ -126,25 +137,33 @@ public class WaveManager : MonoBehaviour
         MyScore scoreComponent = info.gameObject.GetComponent<MyScore>();
         if (scoreComponent)
         {
-            GameManager.Instance.score += scoreComponent.score;
+            GameManager.Instance.Score += scoreComponent.score;
         }
 
-        if (_isPreWave)
+        // hpRatio로 계산시, 적이 아직 남았는데도 승리 화면이 떠 버려서 0으로 바꿈.
+        if (GetCurrentWaveHP() == 0f)
         {
-            if (GetCurrentWaveHP() == 0f)
-            {
-                StartNextWave();
-            }
+            StartNextWave();
         }
-        else
-        {
-            float hpRatio = GetCurrentWaveHP() / _totalWaveHP;
-            if (hpRatio < 0.2f)
-            {
-                // 다음 웨이브
-                StartNextWave();
-            }
-        }
+
+        //이전 코드
+        /* if (_isPreWave)
+         {
+             if (GetCurrentWaveHP() == 0f)
+             {
+                 StartNextWave();
+             }
+         }
+         else
+         {
+             float hpRatio = GetCurrentWaveHP() / _totalWaveHP;
+             Debug.Log(hpRatio);
+             if (hpRatio < 0.2f)
+             {
+                 // 다음 웨이브
+                 StartNextWave();
+             }
+         }*/
     }
 
 
