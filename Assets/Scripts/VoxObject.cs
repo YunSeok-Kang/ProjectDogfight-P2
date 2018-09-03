@@ -36,6 +36,7 @@ public class VoxObject : MonoBehaviour {
             
             if(value <= 0 )
             {
+                _hp = 0;
                 OnHPZero();
             }
         }
