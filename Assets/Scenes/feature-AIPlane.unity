@@ -1969,7 +1969,6 @@ GameObject:
   - component: {fileID: 1434810985}
   - component: {fileID: 1434810984}
   - component: {fileID: 1434810983}
-  - component: {fileID: 1434810982}
   - component: {fileID: 1434810986}
   m_Layer: 0
   m_Name: AIAirplane
@@ -1978,22 +1977,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1434810982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1434810981}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dc1ca599a01e8b428d2c870be8f83a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sight: {fileID: 0}
-  _gunManger: {fileID: 1683957595}
-  gunSpawnPositions:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &1434810983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2006,7 +1989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 100
-  controller: {fileID: 1434810982}
+  controller: {fileID: 0}
   _maxEnginePower: 300
   _lift: 0.002
   _zeroLiftSpeed: 300
@@ -2067,7 +2050,7 @@ MonoBehaviour:
   _pitchSensitivity: 0.5
   _lateralWanderSpeed: 0.11
   _lateralWanderDistance: 5
-  _maxClimbAngle: 45
+  _maxClimbAngle: 360
   _speedEffect: 0.01
   routeManager: {fileID: 1904647928}
 --- !u!4 &1434810988
