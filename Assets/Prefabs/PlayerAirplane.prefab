@@ -424,8 +424,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.01, y: 2.01, z: 6.52}
-  m_Center: {x: 0, y: 0, z: -1.88}
+  m_Size: {x: 2.01, y: 1.48, z: 5.96}
+  m_Center: {x: 0, y: 0.28, z: -2.05}
 --- !u!114 &114044505434747248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d17d5fcc56ff2145ad837c3b75afb4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 50
+  _hp: 100
   controller: {fileID: 114044505434747248}
   _maxEnginePower: 300
   _lift: 0.002
@@ -484,8 +484,8 @@ MonoBehaviour:
   minEnginePower: 150
   altitudePhase1Start: 900
   altitudePhase2Start: 1300
-  graySmokeHP: 30
-  blackSmokeHP: 15
+  graySmokeHP: 50
+  blackSmokeHP: 30
   graySmokeParticle: {fileID: 198250454521029696}
   blackSmokeParticle: {fileID: 198590026016859600}
 --- !u!114 &114639797954872552
