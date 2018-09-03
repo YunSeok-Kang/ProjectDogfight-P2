@@ -36,7 +36,8 @@ public class PlayerCameraManager : MonoBehaviour
     [SerializeField]
     private Quaternion _currentAngle;
 
-
+    [SerializeField]
+    private float cameraStartingTime = 15;
 
 
     void Start()
@@ -44,6 +45,33 @@ public class PlayerCameraManager : MonoBehaviour
         //baseOffset = transform.position - targetToFollow.transform.position;
         _targetTrans = target.transform;
         maxAltMinusMinAlt = maxAltitude - minAltitude;
+
+        StartCoroutine("StartSpeed");
+    }
+    private IEnumerator StartSpeed()
+    {
+        float tempPosSpd = positionFollowSpeed;
+        float tempAngSpd = angleFollowSpeed;
+        float currentTime;
+
+        positionFollowSpeed = 0;
+        angleFollowSpeed = 0;
+
+        currentTime = Time.time;
+        cameraStartingTime = cameraStartingTime + Time.time;
+        while (true)
+        {
+            if(positionFollowSpeed == tempPosSpd && angleFollowSpeed == tempAngSpd)
+            {
+                break;
+            }
+            positionFollowSpeed = Mathf.Lerp(0, tempPosSpd, currentTime/ cameraStartingTime);
+            angleFollowSpeed = Mathf.Lerp(0, tempAngSpd, currentTime / cameraStartingTime);
+
+            currentTime = Time.time;
+
+            yield return new WaitForFixedUpdate();
+        }
     }
     void FixedUpdate()
     {
