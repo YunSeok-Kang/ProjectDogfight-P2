@@ -35,12 +35,32 @@ public class AIAirplaneController : AIController
 
     public AIAirplaneRouteManager routeManager = null;
 
+
+    // 공격 기능
+
+    public GunManager gunManager = null;
+
+    /// <summary>
+    /// 비행기 사정거리
+    /// </summary>
+    public float fireRange = 10f; 
+
     // Use this for initialization
     private void Start()
     {
         if (_AIAirplane == null)
         {
             _AIAirplane = gameObject.GetComponent<Airplane>();
+        }
+
+        if (sight == null)
+        {
+            sight = gameObject.GetComponentInChildren<Sight>();
+        }
+
+        if (gunManager == null)
+        {
+            gunManager = gameObject.GetComponentInChildren<GunManager>();
         }
 
         if (routeManager == null)
@@ -51,7 +71,31 @@ public class AIAirplaneController : AIController
         routeManager.targetController = this;
     }
 
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawLine(sight.transform.position, sight.transform.TransformDirection(transform.forward) * fireRange);
+    //}
+
     private void FixedUpdate()
+    {
+        Fly();
+
+        Debug.DrawRay(sight.transform.position,
+             sight.transform.TransformDirection(Vector3.forward) * fireRange,
+             Color.red);
+
+        RaycastHit hit;
+        bool isHit = Physics.Raycast(sight.transform.position, sight.transform.TransformDirection(Vector3.forward), out hit, fireRange);
+        if (isHit)
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                gunManager.PullTrigger();
+            }
+        }
+    }
+
+    private void Fly()
     {
         if (routeManager.CurrentTarget == null)
         {
@@ -78,13 +122,11 @@ public class AIAirplaneController : AIController
 
         // AI applies elevator control (pitch, rotation around x) to reach the target angle
         float pitchInput = changePitch * _pitchSensitivity;
-        Debug.Log("pitchingInput: " + pitchInput);
 
         // adjust how fast the AI is changing the controls based on the speed. Faster speed = faster on the controls.
         float currentSpeedEffect = 1 + (_AIAirplane.ForwardSpeed * _speedEffect);
         pitchInput *= currentSpeedEffect;
 
         _AIAirplane.Move(pitchInput, 1, false);
-
     }
 }

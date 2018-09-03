@@ -304,6 +304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 336625772}
+  - component: {fileID: 336625774}
   - component: {fileID: 336625773}
   m_Layer: 0
   m_Name: BaseGun
@@ -345,9 +346,23 @@ MonoBehaviour:
   ammoType: {fileID: 1413574292632272, guid: 5ecdfd738fd564d499b22fa30415a707, type: 2}
   delayOfFire: 0.1
   isFireBurst: 0
-  burstRounds: 0
-  delayAfterBurst: 0
+  burstRounds: 5
+  delayAfterBurst: 3
   muzzle: {fileID: 475665256}
+--- !u!114 &336625774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 336625771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88054f5cc88ecd94fbaaf4ae0bd48564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guns:
+  - {fileID: 336625773}
+  reloadTime: 0
 --- !u!1 &390258550
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +618,7 @@ MonoBehaviour:
   _currentOffset: {x: 0, y: 0, z: 0}
   _currentForward: 0
   _currentAngle: {x: 0, y: 0, z: 0, w: 0}
+  cameraStartingTime: 15
 --- !u!1 &475665255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,6 +1720,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1195624294}
+  - component: {fileID: 1195624295}
   m_Layer: 0
   m_Name: Sight
   m_TagString: Untagged
@@ -1724,6 +1741,17 @@ Transform:
   m_Father: {fileID: 1683957594}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1195624295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1195624293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5c90d44002ee042854275d418cba8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1351159251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,7 +2017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 100
-  controller: {fileID: 0}
+  controller: {fileID: 1434810986}
   _maxEnginePower: 300
   _lift: 0.002
   _zeroLiftSpeed: 300
@@ -2046,13 +2074,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61509d991bf03534eb2750346329689f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sight: {fileID: 0}
+  sight: {fileID: 1195624295}
   _pitchSensitivity: 0.5
   _lateralWanderSpeed: 0.11
   _lateralWanderDistance: 5
   _maxClimbAngle: 360
   _speedEffect: 0.01
   routeManager: {fileID: 1904647928}
+  gunManager: {fileID: 0}
+  fireRange: 100
 --- !u!4 &1434810988
 Transform:
   m_ObjectHideFlags: 0
@@ -2668,6 +2698,8 @@ MonoBehaviour:
   _maxClimbAngle: 45
   _speedEffect: 0.01
   routeManager: {fileID: 1904647928}
+  gunManager: {fileID: 0}
+  fireRange: 10
 --- !u!114 &2015302364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2697,7 +2729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 100
   controller: {fileID: 2015302364}
-  _maxEnginePower: 280
+  _maxEnginePower: 200
   _lift: 0.002
   _zeroLiftSpeed: 300
   _pitchEffect: 5
@@ -2749,7 +2781,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2015302362}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 632.5, y: 297, z: 0}
+  m_LocalPosition: {x: 646.3, y: 297, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 420400398}
