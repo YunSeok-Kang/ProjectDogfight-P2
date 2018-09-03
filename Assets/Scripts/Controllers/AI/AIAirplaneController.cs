@@ -21,7 +21,7 @@ public class AIAirplaneController : AIController
 
     [SerializeField]
     // The maximum angle that the AI will attempt to make plane can climb at
-    private float _maxClimbAngle = 45;            
+    private float _maxClimbAngle = 360;            
 
     [SerializeField]
     // This increases the effect of the controls based on the plane's speed.
