@@ -53,15 +53,15 @@ public class AmmoEffectExplosion : AmmoEffect
             {
                 continue;
             }
-            var voxObject = hit.transform.root.GetComponent<VoxObject>();
-            if (voxObject != null)
-            {
-                if (voxObject.gameObject.CompareTag(ammo.enemyTag))
-                {
-                    GiveDamageByReductionRate(voxObject,
-                    CalculateDamageReductionRateByDistance(hit.gameObject));
-                }
-            }
+              var voxObject = hit.GetComponentInParent<VoxObject>();
+              if (voxObject != null)
+              {
+                  if (voxObject.gameObject.CompareTag(ammo.enemyTag))
+                  {
+                      GiveDamageByReductionRate(voxObject,
+                      CalculateDamageReductionRateByDistance(hit.gameObject));
+                  }
+              }
         }
     }
     private void CreateExplosionEffect()

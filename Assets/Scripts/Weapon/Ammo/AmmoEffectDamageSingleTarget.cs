@@ -8,7 +8,7 @@ public class AmmoEffectDamageSingleTarget : AmmoEffect
 
     public override void Effect(GameObject target)
     {
-        target.transform.root.GetComponent<VoxObject>().HP -= damage;
+        target.GetComponentInParent<VoxObject>().HP -= damage;
         base.Effect(target);
     }
 }

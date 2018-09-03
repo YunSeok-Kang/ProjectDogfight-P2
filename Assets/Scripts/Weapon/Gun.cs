@@ -35,8 +35,7 @@ public class Gun : Weapon
         {
             loadedCapacity = maxCapacity;
         }
-
-        string thisTag = transform.root.GetComponent<VoxObject>().tag;
+        string thisTag = transform.parent.GetComponentInParent<VoxObject>().tag;
         _enemyTag = (thisTag == "Player") ? "Enemy" : "Player";
         return true;
     }
