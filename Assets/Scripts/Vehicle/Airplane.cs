@@ -90,10 +90,10 @@ public class Airplane : Vehicle
         _OriginalDrag = _rigidbody.drag;
         _OriginalAngularDrag = _rigidbody.angularDrag;
 
-        Vector3 currentVelo = _rigidbody.velocity;
-        currentVelo.z = 150;
+        //Vector3 currentVelo = _rigidbody.velocity;
+        //currentVelo.z = 150;
 
-        _rigidbody.velocity = currentVelo;
+        //_rigidbody.velocity = currentVelo;
     }
 
     public void Move(float pitchInput, float throttleInput, bool airBrakes)
