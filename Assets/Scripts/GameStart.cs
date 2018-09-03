@@ -16,8 +16,10 @@ public class GameStart : MonoBehaviour
         }
 
         VoxObject[] voxObjects = FindObjectsOfType<VoxObject>();
+        Debug.Log(voxObjects.Length);
         foreach (VoxObject voxObject in voxObjects)
         {
+            Debug.Log(voxObject.name);
             voxObject.ActivateObject(false);
         }
 
@@ -75,6 +77,8 @@ public class GameStart : MonoBehaviour
 
         // 카메라 임시 이동(애니메이션 없이 바로 이동)
         camManager.enabled = true;
+
+        WaveManager.Instance.StartPreWave();
 
         Destroy(gameObject);
     }
