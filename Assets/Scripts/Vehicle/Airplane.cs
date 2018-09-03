@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Airplane 클래스와 관련된 이벤트를 위해 존재
+/// </summary>
+/// <param name="myInfo"> 해당 Airplane(this)의 정보를 argument로 전달함. </param>
+public delegate void AirplaneEvent(Airplane myInfo);
+
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 // 이거 abstract 클래스로 지정하자.
 public class Airplane : Vehicle
 {
@@ -48,7 +56,7 @@ public class Airplane : Vehicle
     private float _OriginalAngularDrag;  // The angular drag when the scene starts.
     private float _AeroFactor;
 
-    private Rigidbody _Rigidbody;
+    private Rigidbody _rigidbody;
 
     public float liftPower = 0f;
     public float minEnginePower = 50f;
@@ -66,20 +74,20 @@ public class Airplane : Vehicle
     [SerializeField]
     private ParticleSystem blackSmokeParticle;
 
+    public AirplaneEvent onCrashedEvent = null;
 
-    
 
     private void Start()
     {
-        _Rigidbody = GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
         // Store original drag settings, these are modified during flight.
-        _OriginalDrag = _Rigidbody.drag;
-        _OriginalAngularDrag = _Rigidbody.angularDrag;
+        _OriginalDrag = _rigidbody.drag;
+        _OriginalAngularDrag = _rigidbody.angularDrag;
 
-        Vector3 currentVelo = _Rigidbody.velocity;
+        Vector3 currentVelo = _rigidbody.velocity;
         currentVelo.z = 150;
 
-        _Rigidbody.velocity = currentVelo;
+        _rigidbody.velocity = currentVelo;
     }
 
     public void Move(float pitchInput, float throttleInput, bool airBrakes)
@@ -106,7 +114,7 @@ public class Airplane : Vehicle
 
         CalculateTorque();
 
-        _currentForwardSpeed = _Rigidbody.velocity.x;
+        _currentForwardSpeed = _rigidbody.velocity.x;
     }
 
 
@@ -141,7 +149,7 @@ public class Airplane : Vehicle
     private void CalculateForwardSpeed()
     {
         // Forward speed is the speed in the planes's forward direction (not the same as its velocity, eg if falling in a stall)
-        var localVelocity = transform.InverseTransformDirection(_Rigidbody.velocity);
+        var localVelocity = transform.InverseTransformDirection(_rigidbody.velocity);
         ForwardSpeed = Mathf.Max(0, Mathf.Abs(localVelocity.z));
     }
 
@@ -159,11 +167,11 @@ public class Airplane : Vehicle
     private void CalculateDrag()
     {
         // increase the drag based on speed, since a constant drag doesn't seem "Real" (tm) enough
-        float extraDrag = _Rigidbody.velocity.magnitude * _dragIncreaseFactor;
+        float extraDrag = _rigidbody.velocity.magnitude * _dragIncreaseFactor;
         // Air brakes work by directly modifying drag. This part is actually pretty realistic!
-        _Rigidbody.drag = (IsOnAirBrakes ? (_OriginalDrag + extraDrag) * _airBrakesEffect : _OriginalDrag + extraDrag);
+        _rigidbody.drag = (IsOnAirBrakes ? (_OriginalDrag + extraDrag) * _airBrakesEffect : _OriginalDrag + extraDrag);
         // Forward speed affects angular drag - at high forward speed, it's much harder for the plane to spin
-        _Rigidbody.angularDrag = _OriginalAngularDrag * ForwardSpeed;
+        _rigidbody.angularDrag = _OriginalAngularDrag * ForwardSpeed;
     }
 
 
@@ -172,27 +180,27 @@ public class Airplane : Vehicle
         // "Aerodynamic" calculations. This is a very simple approximation of the effect that a plane
         // will naturally try to align itself in the direction that it's facing when moving at speed.
         // Without this, the plane would behave a bit like the asteroids spaceship!
-        if (_Rigidbody.velocity.magnitude > 0)
+        if (_rigidbody.velocity.magnitude > 0)
         {
             // compare the direction we're pointing with the direction we're moving:
-            _AeroFactor = Vector3.Dot(transform.forward, _Rigidbody.velocity.normalized);
+            _AeroFactor = Vector3.Dot(transform.forward, _rigidbody.velocity.normalized);
             // multipled by itself results in a desirable rolloff curve of the effect
             _AeroFactor *= _AeroFactor;
             // Finally we calculate a new velocity by bending the current velocity direction towards
             // the the direction the plane is facing, by an amount based on this aeroFactor
-            var newVelocity = Vector3.Lerp(_Rigidbody.velocity, transform.forward * ForwardSpeed,
+            var newVelocity = Vector3.Lerp(_rigidbody.velocity, transform.forward * ForwardSpeed,
                                            _AeroFactor * ForwardSpeed * _aerodynamicEffect * Time.deltaTime);
-            _Rigidbody.velocity = newVelocity;
-           // Debug.Log("LerpValue: " + _AeroFactor * ForwardSpeed * _aerodynamicEffect * Time.deltaTime);
-           // Debug.Log("DeltaTime: " + Time.deltaTime);
+            _rigidbody.velocity = newVelocity;
+            // Debug.Log("LerpValue: " + _AeroFactor * ForwardSpeed * _aerodynamicEffect * Time.deltaTime);
+            // Debug.Log("DeltaTime: " + Time.deltaTime);
 
             // also rotate the plane towards the direction of movement - this should be a very small effect, but means the plane ends up
             // pointing downwards in a stall
-            //_Rigidbody.rotation = Quaternion.Slerp(Quaternion.Euler(transform.localRotation.x, 0, _Rigidbody.rotation),
-            //                                      Quaternion.LookRotation(_Rigidbody.velocity, transform.up),
+            //_rigidbody.rotation = Quaternion.Slerp(Quaternion.Euler(transform.localRotation.x, 0, _rigidbody.rotation),
+            //                                      Quaternion.LookRotation(_rigidbody.velocity, transform.up),
             //                                      _aerodynamicEffect * Time.deltaTime).eulerAngles.z;
-            _Rigidbody.rotation = Quaternion.Slerp(_Rigidbody.rotation,
-                                                      Quaternion.LookRotation(_Rigidbody.velocity, transform.up),
+            _rigidbody.rotation = Quaternion.Slerp(_rigidbody.rotation,
+                                                      Quaternion.LookRotation(_rigidbody.velocity, transform.up),
                                                       _aerodynamicEffect * Time.deltaTime);
         }
     }
@@ -206,7 +214,7 @@ public class Airplane : Vehicle
         // Add the engine power in the forward direction
         forces += EnginePower * transform.forward;
         // The direction that the lift force is applied is at right angles to the plane's velocity (usually, this is 'up'!)
-        var liftDirection = Vector3.Cross(_Rigidbody.velocity, transform.right).normalized;
+        var liftDirection = Vector3.Cross(_rigidbody.velocity, transform.right).normalized;
         // The amount of lift drops off as the plane increases speed - in reality this occurs as the pilot retracts the flaps
         // shortly after takeoff, giving the plane less drag, but less lift. Because we don't simulate flaps, this is
         // a simple way of doing it automatically:
@@ -216,7 +224,7 @@ public class Airplane : Vehicle
         this.liftPower = liftPower;
         forces += liftPower * liftDirection;
         // Apply the calculated forces to the the Rigidbody
-        _Rigidbody.AddForce(forces);
+        _rigidbody.AddForce(forces);
     }
 
 
@@ -225,7 +233,7 @@ public class Airplane : Vehicle
         var torque = Vector3.zero;
         torque = PitchInput * _pitchEffect * transform.right;
 
-        _Rigidbody.AddTorque(torque * ForwardSpeed * _AeroFactor * _torqueFactor);
+        _rigidbody.AddTorque(torque * ForwardSpeed * _AeroFactor * _torqueFactor);
     }
 
     private float CalculateEngineEfficiency()
@@ -266,6 +274,65 @@ public class Airplane : Vehicle
         if (HP >= graySmokeHP)
         {
             graySmokeParticle.Stop();
+        }
+    }
+
+    protected virtual void OnCrashed()
+    {
+        Debug.Log("부딪힘");
+        this.VoxDestroy();
+
+        if (onCrashedEvent != null)
+        {
+            onCrashedEvent(this);
+            Debug.Log("실행");
+        }
+    }
+
+    protected override void OnActivateObject()
+    {
+        controller.enabled = true;
+        Collider collider = gameObject.GetComponent<Collider>();
+        if (collider)
+        {
+            collider.enabled = true;
+        }
+
+        _rigidbody.isKinematic = false;
+
+        base.OnActivateObject();
+    }
+
+    protected override void OnUnActivateObject()
+    {
+        controller.enabled = false;
+        Collider collider = gameObject.GetComponent<Collider>();
+        if (collider)
+        {
+            collider.enabled = false;
+        }
+
+        _rigidbody.isKinematic = true;
+
+        base.OnUnActivateObject();
+    }
+
+    
+
+    // 지상충돌 및 오브젝트 사이의 충돌 감지
+    // 해당 스크립트가 너무 무거워지는 감이 있지만, 여기가 적소라고 판단했음.
+    protected virtual void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("꽝: " + collision.collider.tag);
+
+        // Enemy끼리, Enemy와 Wall 사이도 충돌이 일어나도록 함.
+        if (collision.collider.CompareTag("Player") ||
+            collision.collider.CompareTag("Enemy") ||
+            collision.collider.CompareTag("Wall"))
+        {
+
+            OnCrashed();
+
         }
     }
 }
