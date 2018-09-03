@@ -73,7 +73,7 @@ public class AIAirplaneRouteManager : MonoBehaviour {
     {
         if (Application.isPlaying)
         {
-            Gizmos.DrawSphere(CurrentTarget.position, waypointTriggingCheckSize);
+            //Gizmos.DrawSphere(CurrentTarget.position, waypointTriggingCheckSize);
         }
     }
 

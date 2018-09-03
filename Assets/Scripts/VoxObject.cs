@@ -48,7 +48,7 @@ public class VoxObject : MonoBehaviour {
 
 
     // ----------------------------------------------------- Unity Event Functions ----------------------------------------------------- //
-    private void Awake()
+    protected virtual void Awake()
     {
         if (!Init())
         {

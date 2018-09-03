@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //WaveManager.Instance.StartPreWave();
+        WaveManager.Instance.StartPreWave();
 
         //// 테스트용 스크립트
         //StartCoroutine(Test());

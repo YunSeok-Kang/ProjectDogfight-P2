@@ -77,9 +77,15 @@ public class Airplane : Vehicle
     public event AirplaneEvent onCrashedEvent = delegate { };
 
 
+    protected override bool Init ()
+    {
+        base.Init();
+        _rigidbody = GetComponent<Rigidbody>();
+        return true;
+    }
+
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
         // Store original drag settings, these are modified during flight.
         _OriginalDrag = _rigidbody.drag;
         _OriginalAngularDrag = _rigidbody.angularDrag;

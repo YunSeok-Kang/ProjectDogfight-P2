@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80634d9a3357c93448502cebb3642ebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 6000
+  force: 12000
 --- !u!114 &114398064491384354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,3 +199,4 @@ MonoBehaviour:
   _hp: 0
   lifetime: 5
   enemyTag: Enemy
+  ammoDestructionParticle: {fileID: 0}
