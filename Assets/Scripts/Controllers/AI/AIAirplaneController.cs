@@ -65,7 +65,10 @@ public class AIAirplaneController : AIController
 
         if (routeManager == null)
         {
-            Debug.LogError("AIAirplaneController: AI 비행기를 비행을 위해 routeManager 정보가 꼭 필요합니다.");
+            // 없으면 플레이어 무조건 따라가도록 함.
+            routeManager = gameObject.AddComponent<AIAirplaneRouteManager>();
+
+            //Debug.LogError("AIAirplaneController: AI 비행기를 비행을 위해 routeManager 정보가 꼭 필요합니다.");
         }
 
         routeManager.targetController = this;

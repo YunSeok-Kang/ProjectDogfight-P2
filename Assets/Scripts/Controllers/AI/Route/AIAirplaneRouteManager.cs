@@ -33,6 +33,8 @@ public class AIAirplaneRouteManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        waypoints = new GameObject[0];
+
         CurrentTarget = GetNext();
     }
 	
