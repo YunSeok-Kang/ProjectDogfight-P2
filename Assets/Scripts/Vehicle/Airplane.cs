@@ -325,13 +325,19 @@ public class Airplane : Vehicle
     protected virtual void OnCollisionEnter(Collision collision)
     {
         // Enemy끼리, Enemy와 Wall 사이도 충돌이 일어나도록 함.
-        if (collision.collider.CompareTag("Player") ||
-            collision.collider.CompareTag("Enemy") ||
-            collision.collider.CompareTag("Wall"))
+        if (collision.collider.CompareTag("Wall"))
         {
 
             OnCrashed();
 
         }
+        /* if (collision.collider.CompareTag("Player") ||
+             collision.collider.CompareTag("Enemy") ||
+             collision.collider.CompareTag("Wall"))
+         {
+
+             OnCrashed();
+
+         }*/
     }
 }
