@@ -279,14 +279,13 @@ public class Airplane : Vehicle
 
     protected virtual void OnCrashed()
     {
-        Debug.Log("부딪힘");
-        this.VoxDestroy();
-
         if (onCrashedEvent != null)
         {
-            onCrashedEvent(this);
             Debug.Log("실행");
+            onCrashedEvent(this);
         }
+
+        this.VoxDestroy();
     }
 
     protected override void OnActivateObject()
@@ -323,8 +322,6 @@ public class Airplane : Vehicle
     // 해당 스크립트가 너무 무거워지는 감이 있지만, 여기가 적소라고 판단했음.
     protected virtual void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("꽝: " + collision.collider.tag);
-
         // Enemy끼리, Enemy와 Wall 사이도 충돌이 일어나도록 함.
         if (collision.collider.CompareTag("Player") ||
             collision.collider.CompareTag("Enemy") ||
