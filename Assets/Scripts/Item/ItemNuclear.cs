@@ -7,6 +7,12 @@ public class ItemNuclear : Item
     public GameObject nuclearBomb;
     public Transform spawnPosition;
 
+    protected  override  void Awake()
+    {
+        spawnPosition = FindObjectOfType<NuclearSpawnPosition>().transform;
+        base.Awake();
+    }
+
     public override void Use(VoxObject target)
     {
         var newBomb = Instantiate(nuclearBomb);

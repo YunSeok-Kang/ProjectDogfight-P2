@@ -6,6 +6,7 @@ public class AIAASiegeCarController : AIAACarController {
 
 
     public float siegeDistance = 100f;
+    public bool isCanSiege = false;
 
 	// Update is called once per frame
 	protected override void Update () {
@@ -13,9 +14,12 @@ public class AIAASiegeCarController : AIAACarController {
 
         if(target != null && isCanThrust == true)
         {
-            if(MesureDistanceWithTarget())
+            if (isCanSiege)
             {
-                isCanThrust = false;
+                if (MesureDistanceWithTarget())
+                {
+                    isCanThrust = false;
+                }
             }
         }
 	}

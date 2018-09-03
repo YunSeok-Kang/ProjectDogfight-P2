@@ -924,8 +924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 30
   controller: {fileID: 114654762333253244}
-  speed: 5
-  _direction: 1
+  speed: 10
 --- !u!114 &114654762333253244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -938,10 +937,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sight: {fileID: 114044126142412420}
+  isCanThrust: 1
   car: {fileID: 114429320366398792}
   target: {fileID: 0}
   gun: {fileID: 114076943811795854}
   rotateSpeed: 0.25
   gunRange: 300
-  isCanThrust: 1
   siegeDistance: 150
+  isCanSiege: 0

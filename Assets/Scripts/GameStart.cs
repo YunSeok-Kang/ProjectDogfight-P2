@@ -70,11 +70,7 @@ public class GameStart : MonoBehaviour
             voxObject.ActivateObject(true);
         }
 
-
-        // 카메라가 이동하는 애니메이션 만들어야 함. 재욱이와 상의할 필요 있음.
-        // 카메라 이동 스크립트 여기에 두고
-        // 카메라 이동이 끝나면
-
+        
         // 카메라 임시 이동(애니메이션 없이 바로 이동)
         camManager.enabled = true;
 

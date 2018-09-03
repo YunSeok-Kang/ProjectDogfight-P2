@@ -5910,7 +5910,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1846561601510618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -830, y: 102.6, z: 0}
+  m_LocalPosition: {x: -650, y: 102.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4195023743027324}
@@ -10674,6 +10674,7 @@ MonoBehaviour:
   rotateSpeed: 0.25
   gunRange: 100
   siegeDistance: 50
+  isCanSiege: 0
 --- !u!114 &114168878854543878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10852,6 +10853,7 @@ MonoBehaviour:
   rotateSpeed: 0.25
   gunRange: 300
   siegeDistance: 150
+  isCanSiege: 0
 --- !u!114 &114384311674902890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10897,6 +10899,7 @@ MonoBehaviour:
   rotateSpeed: 0.25
   gunRange: 300
   siegeDistance: 150
+  isCanSiege: 0
 --- !u!114 &114415767006149884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10960,7 +10963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 30
   controller: {fileID: 114366147849397766}
-  speed: 5
+  speed: 10
 --- !u!114 &114480325697195838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11117,7 +11120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 30
   controller: {fileID: 114413481982784606}
-  speed: 5
+  speed: 10
 --- !u!114 &114654332974932216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11131,7 +11134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 30
   controller: {fileID: 114788685425836660}
-  speed: 5
+  speed: 10
 --- !u!114 &114656674888812300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11159,7 +11162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 30
   controller: {fileID: 114783517706180860}
-  speed: 5
+  speed: 10
 --- !u!114 &114677174295741530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11330,6 +11333,7 @@ MonoBehaviour:
   rotateSpeed: 0.25
   gunRange: 300
   siegeDistance: 150
+  isCanSiege: 0
 --- !u!114 &114788685425836660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11349,6 +11353,7 @@ MonoBehaviour:
   rotateSpeed: 0.25
   gunRange: 300
   siegeDistance: 150
+  isCanSiege: 0
 --- !u!114 &114797038817361678
 MonoBehaviour:
   m_ObjectHideFlags: 1
