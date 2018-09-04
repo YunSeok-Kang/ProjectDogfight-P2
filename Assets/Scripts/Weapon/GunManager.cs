@@ -10,6 +10,7 @@ public class GunManager : MonoBehaviour
     private bool _isReloading = false;
 
 
+
     private void Awake()
     {
         if (guns.Count == 0)
@@ -67,4 +68,6 @@ public class GunManager : MonoBehaviour
 
         yield return null;
     }
+
+ 
 }
