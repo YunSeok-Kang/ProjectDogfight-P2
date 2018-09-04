@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
 
     public GameStart gameStartObject = null;
 
+    public PlayerCameraManager camManager = null;
+
     /// <summary>
     /// 스코어.
     /// 적 오브젝트를 파괴했을 때 얻어지는 Score는 WaveManager에서 처리한다.
@@ -72,6 +74,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Debug.Log("시작");
+
+        //플레이어 카메라 매니저
+        camManager = FindObjectOfType<PlayerCameraManager>();
 
 
         GameObject playerPlaneObj = FindObjectOfType<PlayerAirplaneController>().gameObject;
@@ -145,8 +150,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //// 테스트용 스크립트
-        //StartCoroutine(Test());
+        camManager.Target = _playerPlane.gameObject;
+
+        //도발 말풍선 지우기
+        GameUIManager.Instance.teaseImage.gameObject.SetActive(false);
     }
 
     //IEnumerator Test()
@@ -166,9 +173,35 @@ public class GameManager : MonoBehaviour
 
     private void PlayerLose()
     {
+        // 캠 매니저가 적을 비추도록.
+        MakeRandomEnemyToTeasePlayer();
+
         GameEnded();
 
         Instantiate(loseResultPrefab);
+
+    }
+
+    private void MakeRandomEnemyToTeasePlayer()
+    {
+        var waveChildren = WaveManager.Instance.currentWave.transform.GetComponentsInChildren<Vehicle>();
+        Debug.Log(waveChildren.Length);
+        var newCamTarget = waveChildren[Random.Range(0, waveChildren.Length)];
+        Debug.Log(newCamTarget.gameObject);
+        camManager.Target = newCamTarget.gameObject;
+
+        //UI를 World 포지션에 맞춰줘야 할 때 카메라를 기준으로하므로, 
+        // 먼저 카메라를 타겟에다 옮겨줘야함.
+        camManager.transform.position = newCamTarget.gameObject.transform.position;
+        camManager.transform.position += camManager.minOffset;
+        camManager.transform.position += camManager.minOffset;
+
+        var teasePos = Camera.main.WorldToScreenPoint(newCamTarget.gameObject.transform.position);
+        GameUIManager.Instance.teaseImage.gameObject.SetActive(true);
+        GameUIManager.Instance.teaseImage.transform.position = teasePos;
+        GameUIManager.Instance.teaseImage.transform.position += new Vector3(300
+            ,100
+            ,0);
     }
 
     private void PlayerWin()
