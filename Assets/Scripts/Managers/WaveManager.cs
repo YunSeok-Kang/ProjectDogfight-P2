@@ -46,9 +46,6 @@ public class WaveManager : MonoBehaviour
 
     public GameObject currentWave = null;
 
-    public Text waveUI = null;
-    private int waveCount = 1;
-
     private void Start()
     {
         if (waveCreatingTransform == null)
@@ -87,7 +84,6 @@ public class WaveManager : MonoBehaviour
         foreach (Vehicle vehicle in _enemyVehicles)
         {
             _currentWaveHP += vehicle.HP;
-            Debug.Log(_currentWaveHP);
         }
 
         return _currentWaveHP;
@@ -95,10 +91,8 @@ public class WaveManager : MonoBehaviour
 
     public void StartPreWave()
     {
-        waveUI.text = "Pre Wave";
         _isPreWave = true;
         CreateWave(preWave);
-        waveCount = 1;
     }
 
     private void StartNextWave()
@@ -115,15 +109,11 @@ public class WaveManager : MonoBehaviour
             // 다음 웨이브가 없다는 뜻
             // = 승리
             VoxEventManager.Instance.PostNotifycation("AllWavesWereCleared", null);
-            waveUI.text = "Winner!";
             return;
         }
 
         _isPreWave = false;
         CreateWave(nextWave);
-
-        waveUI.text = "Wave " + waveCount.ToString();
-        waveCount++;
     }
 
     // Vehicle state checking methods

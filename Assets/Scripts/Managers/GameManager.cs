@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
     public GameObject loseResultPrefab = null;
 
     public GameStart gameStartObject = null;
-    public Text scoreUI = null;
 
     /// <summary>
     /// 스코어.
@@ -66,13 +65,14 @@ public class GameManager : MonoBehaviour
         set
         {
             _score = value;
-            scoreUI.text = _score.ToString();
+            //scoreUI.text = _score.ToString();
         }
     }
 
     private void Awake()
     {
         Debug.Log("시작");
+
 
         GameObject playerPlaneObj = FindObjectOfType<PlayerAirplaneController>().gameObject;
         Airplane plane = playerPlaneObj.GetComponent<Airplane>();
@@ -83,11 +83,6 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log(plane);
-
-        if(scoreUI == null)
-        {
-            Debug.LogError("GameManager : 게임 UI를 찾을 수 없습니다.");
-        }
 
         plane.onHPZeroEvent += PlayerOnHPZero;
         plane.onCrashedEvent += PlayerOnCrashed;
