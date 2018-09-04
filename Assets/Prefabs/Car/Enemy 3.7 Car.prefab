@@ -869,12 +869,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sight: {fileID: 114046326732505176}
+  isCanThrust: 1
   car: {fileID: 114723785656816662}
   target: {fileID: 0}
   gun: {fileID: 114524859371520426}
   rotateSpeed: 0.25
   gunRange: 225
-  isCanThrust: 1
 --- !u!114 &114524859371520426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -924,8 +924,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 30
   controller: {fileID: 114095449104842938}
+  particleOnDestroy: {fileID: 198237386872617196, guid: c89f3a685972cc7448dfbf041e1340c8,
+    type: 2}
   speed: 10
-  _direction: 1
 --- !u!114 &114995811879292302
 MonoBehaviour:
   m_ObjectHideFlags: 1

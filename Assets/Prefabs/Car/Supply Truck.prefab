@@ -697,6 +697,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 20
   controller: {fileID: 114753200697684482}
+  particleOnDestroy: {fileID: 198237386872617196, guid: c89f3a685972cc7448dfbf041e1340c8,
+    type: 2}
   speed: 10
 --- !u!114 &114340409009936312
 MonoBehaviour:
