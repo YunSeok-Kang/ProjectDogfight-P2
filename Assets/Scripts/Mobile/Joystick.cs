@@ -9,6 +9,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     private Image backGroundImage;
     private Image joystickImage;
     private Vector3 inputVector;
+    public bool isInverse;
 
     private void Start()
     {
@@ -18,18 +19,16 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 
     public virtual void OnDrag(PointerEventData ped)
     {
-        Debug.Log("Joystick >>> OnDrag()");
-
         Vector2 pos;
         if(RectTransformUtility.ScreenPointToLocalPointInRectangle(backGroundImage.rectTransform, ped.position, ped.pressEventCamera, out pos))
         {
-            pos.x = (pos.x / backGroundImage.rectTransform.sizeDelta.x);
-            pos.y = (pos.y / backGroundImage.rectTransform.sizeDelta.y);
+       //     pos.x = (pos.x / backGroundImage.rectTransform.sizeDelta.x);
+       //     pos.y = (pos.y / backGroundImage.rectTransform.sizeDelta.y);
 
             inputVector = new Vector3(pos.x * 2 + 1, pos.y * 2 - 1, 0);
             inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector;
-
-            joystickImage.rectTransform.anchoredPosition = new Vector3(inputVector.x * (backGroundImage.rectTransform.sizeDelta.x / 3),
+            Debug.Log("x : " + inputVector.x +  " y : " + inputVector.y);
+            joystickImage.rectTransform.anchoredPosition = new Vector3(inputVector.x * (backGroundImage.rectTransform.sizeDelta.x /3),
                                                                          inputVector.y * (backGroundImage.rectTransform.sizeDelta.y / 3));
         }
     }
@@ -50,6 +49,13 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     }
     public float GetVerticalValue()
     {
-        return inputVector.y;
+        if (isInverse)
+        {
+            return inputVector.y * -1;
+        }
+        else
+        {
+            return inputVector.y;
+        }
     }
 }

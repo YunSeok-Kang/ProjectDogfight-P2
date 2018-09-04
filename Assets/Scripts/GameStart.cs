@@ -49,8 +49,11 @@ public class GameStart : MonoBehaviour
                 }
             }
         }
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartGame();
+        }
 
-        
 #else
         if (Input.GetMouseButtonDown(0))
         {

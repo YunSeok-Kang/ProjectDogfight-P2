@@ -14,6 +14,8 @@ public class Vehicle : VoxObject
 {
     public Controller controller = null;
 
+    public ParticleSystem particleOnDestroy = null;
+
     public event VehicleEvent onHPZeroEvent = delegate { };
 
     protected override bool Init()
@@ -51,4 +53,20 @@ public class Vehicle : VoxObject
 
         base.OnHPZero();
     }
+
+    protected override void VoxDestroyLogic()
+    {
+        if (particleOnDestroy != null)
+        {
+            var particleEffect = Instantiate(particleOnDestroy, transform.position, transform.rotation);
+            float totalDuration = particleEffect.main.duration;
+            for (int i = 0; i < particleEffect.subEmitters.subEmittersCount; i++)
+            {
+                totalDuration += particleEffect.subEmitters.GetSubEmitterSystem(i).main.duration;
+            }
+            Destroy(particleEffect.gameObject, totalDuration);
+        }
+        base.VoxDestroyLogic();
+    }
+
 }

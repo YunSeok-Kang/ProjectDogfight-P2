@@ -40,20 +40,43 @@ public class PlayerAirplaneController : PlayerController
 
     private float GetUserPitch()
     {
-        float pitchingValue = Input.GetAxis("Vertical");
-        pitchingValue = Mathf.Clamp(pitchingValue, -1, 1);
-
-       // Debug.Log("Pitching Value: " + pitchingValue);
-        return pitchingValue;
-
-        //CrossPlatformInputManager.GetAxis("Vertical");
+#if UNITY_IOS || UNITY_ANDROID
+        return PoolPitchByJoystick();
+#else
+        return PoolPitchByKeyboard();
+#endif
     }
 
     private void GetUserGunControl()
     {
-        if(Input.GetButton("Fire1"))
+#if UNITY_IOS || UNITY_ANDROID
+        if(fireButton.GetFireInput())
         {
             _gunManger.PullTrigger();
         }
+#else
+        if (Input.GetButton("Fire1"))
+        {
+            _gunManger.PullTrigger();
+        }
+#endif
+    }
+
+    public float PoolPitchByKeyboard()
+    {
+        float pitchingValue = Input.GetAxis("Vertical");
+        pitchingValue = Mathf.Clamp(pitchingValue, -1, 1);
+
+        // Debug.Log("Pitching Value: " + pitchingValue);
+        return pitchingValue;
+
+        //CrossPlatformInputManager.GetAxis("Vertical");
+    }
+    public float PoolPitchByJoystick()
+    {
+        float v = joystick.GetVerticalValue();
+        v = Mathf.Clamp(v, -1, 1);
+
+        return v;
     }
 }
