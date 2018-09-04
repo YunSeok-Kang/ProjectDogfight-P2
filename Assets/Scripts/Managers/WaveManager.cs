@@ -80,6 +80,8 @@ public class WaveManager : MonoBehaviour
                 Airplane enemyAirplane = vehicle as Airplane;
                 enemyAirplane.onCrashedEvent += VehicleCrashingEvent;
             }
+
+            // Screen Indicator 리스트에 넣는 코드;
         }
 
         _currentWaveHP = _totalWaveHP;
@@ -177,14 +179,20 @@ public class WaveManager : MonoBehaviour
     public void VehicleDestroyEvent(Vehicle info)
     {
         SetCurrentWavesScore(info);
+
+        // Screen Indicator에서 빼는 코드;
     }
 
+    //이 코드를 없애고,
+    //기존 VehicleDestoryEvent에 hp =0하는 코드를 넣어서 통합하는게 낫지 않을까.
     public void VehicleCrashingEvent(Airplane info)
     {
         // 그냥 파괴되어버리면 HP가 남는 문제가 있음.
         info.HP = 0;
 
         SetCurrentWavesScore(info);
+
+        // Screen Indicator에서 빼는 코드;
     }
 
 }
