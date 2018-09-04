@@ -161,7 +161,7 @@ MonoBehaviour:
   loseResultPrefab: {fileID: 1545509021339106, guid: 1470df0accdc1d04ca4e690fec4ec714,
     type: 2}
   gameStartObject: {fileID: 1249773634}
-  camManager: {fileID: 0}
+  _score: 0
 --- !u!1 &35319298
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +734,8 @@ MonoBehaviour:
   _currentForward: 0
   _currentAngle: {x: 0, y: 0, z: 0, w: 0}
   cameraStartingTime: 16
+  duration: 0.25
+  magnitude: 0.2
 --- !u!4 &460426418 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4816651424443644, guid: 5fcdffa12c154d84785bd6b2554ce8b8,
@@ -2407,6 +2409,7 @@ MonoBehaviour:
   - {fileID: 1311022651456110, guid: 685f5a18573f4124d994652951d79f4e, type: 2}
   waveCreatingTransform: {fileID: 0}
   currentWave: {fileID: 0}
+  currentWaveHP: 0
   scoreClip: {fileID: 8300000, guid: 08fd3f4c51b381e4893f0ca64923317f, type: 3}
 --- !u!1 &2078061183
 GameObject:

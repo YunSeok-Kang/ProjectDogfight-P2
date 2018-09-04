@@ -4,6 +4,30 @@ using UnityEngine;
 
 public class PlayerCameraManager : MonoBehaviour
 {
+    static private PlayerCameraManager _instance = null;
+    static public PlayerCameraManager Instance
+    {
+        private set
+        {
+            _instance = value;
+        }
+
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<PlayerCameraManager>();
+
+
+                if (_instance == null)
+                {
+                    Debug.LogError("PlayerCameraManager를 Hierarchy 탭에서 찾지 못했습니다.");
+                }
+            }
+
+            return _instance;
+        }
+    }
 
     private GameObject _target;
     public GameObject Target
@@ -51,6 +75,9 @@ public class PlayerCameraManager : MonoBehaviour
     [SerializeField]
     private float cameraStartingTime = 15;
 
+    [Header("Shake")]
+    public float duration = 0.25f;
+    public float magnitude = 0.1f;
 
     void Start()
     {
@@ -178,5 +205,31 @@ public class PlayerCameraManager : MonoBehaviour
 
         Quaternion newQuaternion = Quaternion.Euler(calculatedXDgree, calculatedYDgree, calculatedZDgree);
         return _currentAngle = newQuaternion;
+    }
+
+
+    public IEnumerator Shake()
+    {
+        float elapsed = 0.0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            float percentComplete = elapsed / duration;
+
+            // We want to reduce the shake from full power to 0 starting half way through
+            float damper = 1.0f - Mathf.Clamp(2.0f * percentComplete - 1.0f, 0.0f, 1.0f);
+
+            // map value to [-1, 1]
+            float x = Random.value * 2.0f - 1.0f;
+            float z = Random.value * 2.0f - 1.0f;
+
+            x *= magnitude * damper;
+            z *= magnitude * damper;
+
+            transform.position += new Vector3(x, z, 0);
+
+            yield return null;
+        }
     }
 }

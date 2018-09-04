@@ -53,12 +53,12 @@ public class PlayerAirplaneController : PlayerController
 #if UNITY_IOS || UNITY_ANDROID
         if(fireButton.GetFireInput())
         {
-            _gunManger.PullTrigger();
+            Fire();
         }
 #else
         if (Input.GetButton("Fire1"))
         {
-            _gunManger.PullTrigger();
+        Fire();
         }
 #endif
     }
@@ -85,5 +85,10 @@ public class PlayerAirplaneController : PlayerController
         Vector2 direction = new Vector2(h, v);
 
         return v;
+    }
+    public void Fire()
+    {
+        PlayerCameraManager.Instance.StartCoroutine("Shake");
+        _gunManger.PullTrigger();
     }
 }
