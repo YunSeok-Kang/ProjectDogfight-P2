@@ -5,7 +5,19 @@ using UnityEngine;
 public class PlayerCameraManager : MonoBehaviour
 {
 
-    public GameObject target;
+    private GameObject _target;
+    public GameObject Target
+    {
+        get
+        {
+            return _target;
+        }
+        set
+        {
+            _target = value;
+            _targetTrans = _target.transform;
+        }
+    }
     private Transform _targetTrans;
 
 
@@ -42,8 +54,6 @@ public class PlayerCameraManager : MonoBehaviour
 
     void Start()
     {
-        //baseOffset = transform.position - targetToFollow.transform.position;
-        _targetTrans = target.transform;
         maxAltMinusMinAlt = maxAltitude - minAltitude;
 
         StartCoroutine("StartSpeed");
@@ -75,7 +85,7 @@ public class PlayerCameraManager : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (target != null)
+        if (_target != null && _target.CompareTag("Player"))
         {
             //확대축소 비율 구하기
             float magnitudeFromTop = maxAltitude - _targetTrans.position.y;
@@ -86,21 +96,30 @@ public class PlayerCameraManager : MonoBehaviour
             newCameraPosition += GetCameraForwardByMagnitude(magnitudeFromBottom);
             newCameraPosition += GetCameraOffsetByMagnitude(magnitudeFromTop);
 
-            MoveCameraSmootly(GetCameraAngleByMagnitude(magnitudeFromTop), newCameraPosition);
+            MoveCameraSmootly(GetCameraAngleByMagnitude(magnitudeFromTop), newCameraPosition, angleFollowSpeed, positionFollowSpeed);
+        }
+        else
+        {
+            //적을 쫒아갈 경우
+            Vector3 newCameraPosition;
+            newCameraPosition = _targetTrans.position;
+            newCameraPosition += new Vector3(0,5,40);
+
+             MoveCameraSmootly(new Quaternion(0,180,0,1), newCameraPosition, 10, 10);
         }
     }
 
 
 
-    private void MoveCameraSmootly(Quaternion newAngle, Vector3 newPosition)
+    private void MoveCameraSmootly(Quaternion newAngle, Vector3 newPosition, float angleSpeed, float positionSpeed)
     {
         //부드럽게 전환
         transform.rotation = Quaternion.Slerp(transform.rotation,
             newAngle,
-            angleFollowSpeed * Time.deltaTime);
+            angleSpeed * Time.deltaTime);
         transform.position = Vector3.Slerp(transform.position,
             newPosition,
-            positionFollowSpeed * Time.deltaTime);
+            positionSpeed * Time.deltaTime);
     }
 
     private Vector3 GetCameraForwardByMagnitude(float magnitude)

@@ -5,15 +5,22 @@ using UnityEngine;
 public class GameStart : MonoBehaviour
 {
     public PlayerCameraManager camManager = null;
-    
-
-	// Use this for initialization
-	void Start ()
+    public GameObject playerAirplane = null;
+    private Vector3 _startPosition;
+    void Start()
     {
         if (camManager == null)
         {
             Debug.LogError("GameStart: PlayerCameraManager가 없습니다.");
         }
+
+        if (playerAirplane == null)
+        {
+            Debug.LogError("GameStart : PlayerAirplane 게임 오브젝트가 없습니다.");
+        }
+
+        _startPosition = playerAirplane.transform.position;
+
 
         VoxObject[] voxObjects = FindObjectsOfType<VoxObject>();
         Debug.Log(voxObjects.Length);
@@ -29,11 +36,13 @@ public class GameStart : MonoBehaviour
             // Tap to start 눌릴 필요 없이 바로 진행
             StartGame();
         }
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void Update()
     {
+        MoveAirplane();
+
 
 #if UNITY_IOS || UNITY_ANDROID
         // 화면이 터치되었으면
@@ -53,15 +62,12 @@ public class GameStart : MonoBehaviour
         {
             StartGame();
         }
-
 #else
         if (Input.GetMouseButtonDown(0))
         {
             StartGame();
         }
 #endif
-
-
     }
 
 
@@ -73,12 +79,17 @@ public class GameStart : MonoBehaviour
             voxObject.ActivateObject(true);
         }
 
-        
         // 카메라 임시 이동(애니메이션 없이 바로 이동)
         camManager.enabled = true;
 
         WaveManager.Instance.StartPreWave();
 
         Destroy(gameObject);
+    }
+
+
+    private void MoveAirplane()
+    {
+        playerAirplane.transform.position = _startPosition + new Vector3(0.0f, Mathf.Sin(Time.time) * 0.5f, 0.0f);
     }
 }
