@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerAirplaneController : PlayerController
 {
     private Airplane _playerAirplane = null;
+
+    [Header("Gun")]
     [SerializeField]
     private GunManager _gunManger = null;
     public GunManager GunManager
@@ -73,8 +75,14 @@ public class PlayerAirplaneController : PlayerController
     }
     public float PoolPitchByJoystick()
     {
+
+        float h = joystick.GetHorizontalValue();
+        h = Mathf.Clamp(h, -1, 1);
+
         float v = joystick.GetVerticalValue();
         v = Mathf.Clamp(v, -1, 1);
+
+        Vector2 direction = new Vector2(h, v);
 
         return v;
     }
