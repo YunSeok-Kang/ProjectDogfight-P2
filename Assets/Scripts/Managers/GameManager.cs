@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     /// 스코어.
     /// 적 오브젝트를 파괴했을 때 얻어지는 Score는 WaveManager에서 처리한다.
     /// </summary>
+    [SerializeField]
     private int _score = 0;
     public int Score
     {
@@ -65,7 +66,7 @@ public class GameManager : MonoBehaviour
         set
         {
             _score = value;
-            //scoreUI.text = _score.ToString();
+            VoxEventManager.Instance.PostNotifycation("ScoreHasChanged", _score);
         }
     }
 
