@@ -28,8 +28,12 @@ public class Gun : Weapon
     protected string _enemyTag;
 
 
+    [Header("Sound")]
     public AudioSource source = null;
     public AudioClip firingSound= null;
+
+    [Header("Particle")]
+    public ParticleSystem muzzleFlash = null;
 
     protected override bool Init()
     {
@@ -119,15 +123,19 @@ public class Gun : Weapon
         newAmmo.GetComponent<AmmoPropellant>().Propel(muzzle.forward);
         newAmmo.GetComponent<Ammo>().enemyTag = this._enemyTag;
 
-        PlaySound();
+        PlayEffect();
     }
 
-    private void PlaySound()
+    protected void PlayEffect()
     {
         if (source != null && firingSound !=null)
         {
-            source.pitch = Random.Range(0.75f, 1.5f);
-            source.PlayOneShot(firingSound);
+            source.PlayOneShot(firingSound,0.5f);
+        }
+
+        if (muzzleFlash != null)
+        {
+            muzzleFlash.Play();
         }
     }
 }

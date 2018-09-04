@@ -30,7 +30,10 @@ public class GunManager : MonoBehaviour
         {
             for (int i = 0; i < guns.Count; i++)
             {
-                guns[i].Fire();
+                if (guns[i].gameObject.activeSelf)
+                {
+                    guns[i].Fire();
+                }
             }
         }
     }
@@ -40,7 +43,10 @@ public class GunManager : MonoBehaviour
         {
             for (int i = 0; i < guns.Count; i++)
             {
+                if (guns[i].gameObject.activeSelf)
+                {
                 guns[i].Fire(target);
+                }
             }
         }
     }
@@ -61,7 +67,10 @@ public class GunManager : MonoBehaviour
 
         for (int i = 0; i < guns.Count; i++)
         {
-            guns[i].Reload();
+            if (guns[i].gameObject.activeSelf)
+            {
+                guns[i].Reload();
+            }
         }
         _isCanFire= true;
         _isReloading = false;

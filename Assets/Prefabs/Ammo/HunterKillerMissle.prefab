@@ -187,6 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f432cfa62c46447b0b7ca53eaa4358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectParticle: {fileID: 0}
+  effectAudio: {fileID: 0}
+  effectClip: {fileID: 0}
   damage: 25
 --- !u!114 &114649651984012472
 MonoBehaviour:
@@ -4763,8 +4766,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 7279d13e9fdbee147a6d14049e3be591, type: 2}
-  - {fileID: 2100000, guid: 7279d13e9fdbee147a6d14049e3be591, type: 2}
+  - {fileID: 2100000, guid: 697d118064228364b8baa466afff566d, type: 2}
+  - {fileID: 2100000, guid: 697d118064228364b8baa466afff566d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

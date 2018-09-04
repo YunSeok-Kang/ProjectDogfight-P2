@@ -63,5 +63,7 @@ public class MissleLauncher : Gun
         newAmmo.GetComponent<AmmoPropellantHoming>().target = target;
         newAmmo.GetComponent<AmmoPropellantHoming>().Propel(muzzle.forward);
         newAmmo.GetComponent<Ammo>().enemyTag = this._enemyTag;
+
+        PlayEffect();
     }
 }

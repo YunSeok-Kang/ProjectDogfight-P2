@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AmmoTriggerTrigger : AmmoTrigger {
+    public bool isEffectOnWall = true;
+
     private void OnTriggerEnter (Collider other)
     {
         if (other.gameObject.CompareTag(ammo.enemyTag))
@@ -11,7 +13,14 @@ public class AmmoTriggerTrigger : AmmoTrigger {
         }
         if (other.gameObject.CompareTag("Wall"))
         {
-            Trigger();
+            if (isEffectOnWall)
+            {
+                Trigger();
+            }
+            else
+            {
+                ammo.VoxDestroy();
+            }
         }
     }
 }

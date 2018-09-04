@@ -10,11 +10,15 @@ using UnityEngine;
 public delegate void VehicleEvent(Vehicle myInfo);
 
 
+[RequireComponent(typeof(AudioSource))]
 public class Vehicle : VoxObject
 {
     public Controller controller = null;
 
+    [Header("Destroy Effect")]
     public ParticleSystem particleOnDestroy = null;
+    public AudioClip destroyClip = null;
+
 
     public event VehicleEvent onHPZeroEvent = delegate { };
 
@@ -29,6 +33,7 @@ public class Vehicle : VoxObject
         {
             Debug.LogError("Vehicle : Controller 없음.");
         }
+
 
         return true;
     }
@@ -65,6 +70,15 @@ public class Vehicle : VoxObject
                 totalDuration += particleEffect.subEmitters.GetSubEmitterSystem(i).main.duration;
             }
             Destroy(particleEffect.gameObject, totalDuration);
+        }
+
+        if(destroyClip != null)
+        {
+            var tempGO = new GameObject("tempSource");
+            tempGO.transform.position = this.transform.position;
+            var src = tempGO.AddComponent<AudioSource>();
+            src.PlayOneShot(destroyClip, 0.5f);
+            Destroy(tempGO, destroyClip.length);
         }
         base.VoxDestroyLogic();
     }

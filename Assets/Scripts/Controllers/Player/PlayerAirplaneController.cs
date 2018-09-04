@@ -15,7 +15,6 @@ public class PlayerAirplaneController : PlayerController
             return _gunManger;
         }
     }
-    public Transform[] gunSpawnPositions = new Transform[2];
     // Use this for initialization
 	private void Start ()
     {

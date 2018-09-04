@@ -7,12 +7,10 @@ public abstract class AmmoEffect : AmmoModel
     protected Ammo ammo;
     //ammo Effect when ammo hit anything
     public ParticleSystem effectParticle = null;
-    public AudioSource effectAudio = null;
     public AudioClip effectClip = null;
     private void Awake()
     {
         ammo = GetComponent<Ammo>();
-        effectAudio = GetComponent<AudioSource>();
     }
     public virtual void Effect()
     {
@@ -32,8 +30,11 @@ public abstract class AmmoEffect : AmmoModel
     {
         if (effectClip != null)
         {
-            effectAudio.pitch = Random.Range(0.75f, 1.5f);
-            effectAudio.PlayOneShot(effectClip);
+            var tempGO = new GameObject("tempSource");
+            tempGO.transform.position = this.transform.position;
+            var src = tempGO.AddComponent<AudioSource>();
+            src.PlayOneShot(effectClip, 1.0f);
+            Destroy(tempGO, effectClip.length);
         }
 
         if(effectParticle != null)
