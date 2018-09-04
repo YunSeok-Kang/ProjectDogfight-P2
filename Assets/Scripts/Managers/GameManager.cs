@@ -74,26 +74,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     { 
         if (Instance.dontDestroyThisObect != null)
-        Debug.Log("시작");
-
-        GameObject playerPlaneObj = FindObjectOfType<PlayerAirplaneController>().gameObject;
-        Airplane plane = playerPlaneObj.GetComponent<Airplane>();
-
-        if (plane == null)
-        {
-            Debug.LogError("GameManager: PlayerPlane을 찾을 수 없습니다.");
-        }
-
-        Debug.Log(plane);
-
-        plane.onHPZeroEvent += PlayerOnHPZero;
-        plane.onCrashedEvent += PlayerOnCrashed;
-
-        _playerPlane = plane;
-
-        VoxEventManager.Instance.AddObserver("AllWavesWereCleared", AllWavesWereCleared);
-
-        if (dontDestroyThisObect != null)
         {
             Destroy(this.gameObject);
             return;
@@ -105,12 +85,12 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void Init()
+    private void Init()
     {
 
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Score = 0;
 
@@ -129,11 +109,19 @@ public class GameManager : MonoBehaviour
 
         _playerPlane = plane;
 
+        //플레이어로 타겟 찾기
+        PlayerCameraManager.Instance.Target = _playerPlane.gameObject;
+        //도발 말풍선 지우기
+        GameUIManager.Instance.teaseImage.gameObject.SetActive(false);
+
+
+
         VoxEventManager.Instance.AddObserver("AllWavesWereCleared", AllWavesWereCleared);
     }
 
     private void Start()
     {
+        //플레이어로 타겟 찾기
        PlayerCameraManager.Instance.Target = _playerPlane.gameObject;
         //도발 말풍선 지우기
         GameUIManager.Instance.teaseImage.gameObject.SetActive(false);

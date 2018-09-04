@@ -8,7 +8,7 @@ public class ScoreText : MonoBehaviour
     public Text scoreText = null;
 
 	// Use this for initialization
-	void Start ()
+	private void Start ()
     {
 		if (scoreText == null)
         {
@@ -22,7 +22,7 @@ public class ScoreText : MonoBehaviour
         VoxEventManager.Instance.AddObserver("ScoreHasChanged", UpdateScore);
 	}
 
-    void UpdateScore(object p_score)
+    private void UpdateScore(object p_score)
     {
         int score = System.Convert.ToInt32(p_score);
 
