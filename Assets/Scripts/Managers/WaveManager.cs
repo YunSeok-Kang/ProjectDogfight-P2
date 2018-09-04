@@ -46,6 +46,8 @@ public class WaveManager : MonoBehaviour
 
     public GameObject currentWave = null;
 
+    public AudioClip scoreClip = null;
+
     private void Start()
     {
         if (waveCreatingTransform == null)
@@ -128,6 +130,12 @@ public class WaveManager : MonoBehaviour
         if (scoreComponent)
         {
             GameManager.Instance.Score += scoreComponent.score;
+
+            var tempGO = new GameObject("tempSource");
+            tempGO.transform.position = this.transform.position;
+            var src = tempGO.AddComponent<AudioSource>();
+            src.PlayOneShot(scoreClip, 0.75f);
+            Destroy(tempGO, scoreClip.length);
         }
 
         // hpRatio로 계산시, 적이 아직 남았는데도 승리 화면이 떠 버려서 0으로 바꿈.
