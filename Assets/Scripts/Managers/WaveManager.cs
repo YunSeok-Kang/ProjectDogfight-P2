@@ -45,6 +45,7 @@ public class WaveManager : MonoBehaviour
     public Transform waveCreatingTransform = null;
 
     public GameObject currentWave = null;
+    public float currentWaveHP = 0f;
 
     private void Start()
     {
@@ -70,6 +71,13 @@ public class WaveManager : MonoBehaviour
         {
             _totalWaveHP += vehicle.HP;
             vehicle.onHPZeroEvent += VehicleDestroyEvent;
+
+            // 비행기면 추가적으로 취해줄 액션
+            if (vehicle.GetType() == typeof(Airplane))
+            {
+                Airplane enemyAirplane = vehicle as Airplane;
+                enemyAirplane.onCrashedEvent += VehicleCrashingEvent;
+            }
         }
 
         _currentWaveHP = _totalWaveHP;
@@ -86,6 +94,7 @@ public class WaveManager : MonoBehaviour
             _currentWaveHP += vehicle.HP;
         }
 
+        currentWaveHP = _currentWaveHP;
         return _currentWaveHP;
     }
 
@@ -116,8 +125,8 @@ public class WaveManager : MonoBehaviour
         CreateWave(nextWave);
     }
 
-    // Vehicle state checking methods
-    public void VehicleDestroyEvent(Vehicle info)
+
+    private void SetCurrentWavesScore(Vehicle info)
     {
         //// 이렇게 원래 빼려고 했는데,
         //// MaxHP를 몰라서 이러한 연산이 불가능 함.
@@ -156,5 +165,18 @@ public class WaveManager : MonoBehaviour
          }*/
     }
 
+    // Vehicle state checking methods
+    public void VehicleDestroyEvent(Vehicle info)
+    {
+        SetCurrentWavesScore(info);
+    }
+
+    public void VehicleCrashingEvent(Airplane info)
+    {
+        // 그냥 파괴되어버리면 HP가 남는 문제가 있음.
+        info.HP = 0;
+
+        SetCurrentWavesScore(info);
+    }
 
 }
