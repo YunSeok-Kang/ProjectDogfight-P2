@@ -72,8 +72,26 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("시작");
+        if (Instance.dontDestroyThisObect != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
 
+        Instance.dontDestroyThisObect = this;
+        DontDestroyOnLoad(this);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void Init()
+    {
+
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Score = 0;
 
         GameObject playerPlaneObj = FindObjectOfType<PlayerAirplaneController>().gameObject;
         Airplane plane = playerPlaneObj.GetComponent<Airplane>();
@@ -91,57 +109,6 @@ public class GameManager : MonoBehaviour
         _playerPlane = plane;
 
         VoxEventManager.Instance.AddObserver("AllWavesWereCleared", AllWavesWereCleared);
-
-        if (dontDestroyThisObect != null)
-        {
-            Destroy(this.gameObject);
-        }
-
-        dontDestroyThisObect = this;
-        DontDestroyOnLoad(this);
-    }
-
-    private void Init()
-    {
-        //if (_playerPlane == null)
-        //{
-        //    Debug.LogError("GameManager: PlayerPlane을 찾을 수 없습니다.");
-        //}
-
-        //if (gameStartObject == null)
-        //{
-        //    Debug.LogError("GameManager: gameStartObject를 찾을 수 없습니다.");
-        //}
-
-        
-
-        //gameStartObject.enabled = true;
-    }
-
-    /// <summary>
-    /// 여기 작동안함.
-    /// </summary>
-    /// <param name="level"></param>
-    private void OnLevelWasLoaded(int level)
-    {
-        //Debug.Log("시작");
-
-        //GameObject playerPlaneObj = FindObjectOfType<PlayerAirplaneController>().gameObject;
-        //Airplane plane = playerPlaneObj.GetComponent<Airplane>();
-
-        //if (plane == null)
-        //{
-        //    Debug.LogError("GameManager: PlayerPlane을 찾을 수 없습니다.");
-        //}
-
-        //Debug.Log(plane);
-
-        //plane.onHPZeroEvent += PlayerOnHPZero;
-        //plane.onCrashedEvent += PlayerOnCrashed;
-
-        //_playerPlane = plane;
-
-        //VoxEventManager.Instance.AddObserver("AllWavesWereCleared", AllWavesWereCleared);
     }
 
     private void Start()
