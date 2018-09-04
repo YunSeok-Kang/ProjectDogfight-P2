@@ -174,8 +174,9 @@ MonoBehaviour:
   _hp: 30
   lifetime: 5
   enemyTag: 
-  ammoDestructionParticle: {fileID: 198098909632117504, guid: b3410ae30ece06345b88f6d909b2948a,
+  particleOnDestroy: {fileID: 198098909632117504, guid: b3410ae30ece06345b88f6d909b2948a,
     type: 2}
+  clipOnDestroy: {fileID: 8300000, guid: 17757ccf1dfc0284c82a98eea2bfb1e7, type: 3}
 --- !u!114 &114105338727069820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,9 +188,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f432cfa62c46447b0b7ca53eaa4358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectParticle: {fileID: 0}
-  effectAudio: {fileID: 0}
-  effectClip: {fileID: 0}
+  effectParticle: {fileID: 198098909632117504, guid: b3410ae30ece06345b88f6d909b2948a,
+    type: 2}
+  effectClip: {fileID: 8300000, guid: 5f4d68f4b5c908a499156c7a80368e31, type: 3}
   damage: 25
 --- !u!114 &114649651984012472
 MonoBehaviour:
@@ -217,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f58e314795d1f40b5a1808521cedd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEffectOnWall: 1
 --- !u!198 &198973531652262412
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -65,8 +65,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1992179649101488}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 258, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 113.7, y: 339.9, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4158794682290100}
   m_Father: {fileID: 0}
@@ -138,6 +138,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 0
-  newGunToAttach: {fileID: 1600244405341298, guid: 8ae288a5e4b20a545964e4b5ddfc9a01,
-    type: 2}
-  gunLastTime: 3
+  pickupClip: {fileID: 8300000, guid: 7a34f24c4210bc24ba1e305e947f54b6, type: 3}

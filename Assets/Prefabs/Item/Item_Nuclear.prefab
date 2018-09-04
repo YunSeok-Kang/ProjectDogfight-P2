@@ -65,8 +65,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1513931672302282}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.7, y: 270, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 118.6, y: 367.1, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4016557921138534}
   m_Father: {fileID: 0}
@@ -138,6 +138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 0
+  pickupClip: {fileID: 8300000, guid: bf6053eedf5860448989597a9f3b1d7f, type: 3}
   nuclearBomb: {fileID: 1386479068497792, guid: f0c9b3fba6ba28b4cb160ec4986f013d,
     type: 2}
-  spawnPosition: {fileID: 0}

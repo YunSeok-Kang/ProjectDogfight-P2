@@ -16,6 +16,9 @@ public class AIBossController : AIController
     public float mainGunRange;
     public float mainGunRotateSpeed;
 
+    public GameObject reloadingText;
+
+
     private float curRotateTime;
     private float totalRotateTime;
     private bool isShootingMissles= false;
@@ -100,6 +103,7 @@ public class AIBossController : AIController
         {
             if (mainGun.guns[0].loadedCapacity > 0)
             {
+                reloadingText.SetActive(false);
                 RotateGunTowardsTarget();
             }
             ShootOnRay();
@@ -143,6 +147,7 @@ public class AIBossController : AIController
     {
         if (mainGun.guns[0].loadedCapacity <= 0)
         {
+            reloadingText.SetActive(true);
             mainGun.Reload();
         }
     }

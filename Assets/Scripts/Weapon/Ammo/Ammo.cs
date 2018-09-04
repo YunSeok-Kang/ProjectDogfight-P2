@@ -6,7 +6,8 @@ public class Ammo : Weapon
 {
     public float lifetime = 5f;
     public string enemyTag;
-    public ParticleSystem ammoDestructionParticle = null;
+    public ParticleSystem particleOnDestroy = null;
+    public AudioClip clipOnDestroy = null;
 
     // Use this for initialization
     void Start()
@@ -15,9 +16,9 @@ public class Ammo : Weapon
     }
     protected override void VoxDestroyLogic()
     {
-        if (ammoDestructionParticle != null)
+        if (particleOnDestroy != null)
         {
-            var particleEffect = Instantiate(ammoDestructionParticle, transform.position, transform.rotation);
+            var particleEffect = Instantiate(particleOnDestroy, transform.position, transform.rotation);
             float totalDuration = particleEffect.main.duration;
             for (int i = 0; i < particleEffect.subEmitters.subEmittersCount; i++)
             {
@@ -25,6 +26,16 @@ public class Ammo : Weapon
             }
             Destroy(particleEffect.gameObject, totalDuration);
         }
+
+        if (clipOnDestroy != null)
+        {
+            var tempGO = new GameObject("tempSource");
+            tempGO.transform.position = this.transform.position;
+            var src = tempGO.AddComponent<AudioSource>();
+            src.PlayOneShot(clipOnDestroy, 0.5f);
+            Destroy(tempGO, clipOnDestroy.length);
+        }
+
         base.VoxDestroyLogic();
     }
 }

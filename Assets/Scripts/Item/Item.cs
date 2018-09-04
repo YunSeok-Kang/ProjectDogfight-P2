@@ -6,13 +6,18 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Item : VoxObject
 {
+    public AudioClip pickupClip = null;
+
     public virtual void Use()
     {
+
+        PlaySound();
         VoxDestroy();
     }
 
     public virtual void Use(VoxObject target)
     {
+        PlaySound();
         VoxDestroy();
     }
 
@@ -22,6 +27,18 @@ public class Item : VoxObject
         {
             var vox = other.gameObject.GetComponent<VoxObject>();
             Use(vox);
+        }
+    }
+
+    private void PlaySound()
+    {
+        if (pickupClip != null)
+        {
+            var tempGO = new GameObject("tempSource");
+            tempGO.transform.position = this.transform.position;
+            var src = tempGO.AddComponent<AudioSource>();
+            src.PlayOneShot(pickupClip, 0.5f);
+            Destroy(tempGO, pickupClip.length);
         }
     }
 }

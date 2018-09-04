@@ -33,7 +33,7 @@ public abstract class AmmoEffect : AmmoModel
             var tempGO = new GameObject("tempSource");
             tempGO.transform.position = this.transform.position;
             var src = tempGO.AddComponent<AudioSource>();
-            src.PlayOneShot(effectClip, 1.0f);
+            src.PlayOneShot(effectClip, 0.5f);
             Destroy(tempGO, effectClip.length);
         }
 

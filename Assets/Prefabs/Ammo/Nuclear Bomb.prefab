@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f58e314795d1f40b5a1808521cedd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEffectOnWall: 1
 --- !u!114 &114829246104422078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,8 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ccfd978cb0c3940aafdad782f02a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionEffect: {fileID: 198419913164165030, guid: c91d3c6828abb8a4bb396788da890fe3,
+  effectParticle: {fileID: 198419913164165030, guid: c91d3c6828abb8a4bb396788da890fe3,
     type: 2}
+  effectClip: {fileID: 0}
   centerDamage: 500
   centerRadius: 150
   middleRadius: 250

@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: e1b0c70b0ffc7e145952cb376a986579
+guid: b6ae36a2ebbc1fa44b1289d911d6c50a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: laser-bolts_0
-    21300002: laser-bolts_1
-    21300004: laser-bolts_2
-    21300006: laser-bolts_3
+    21300000: RedBullet
+    21300002: YellowBullet1
+    21300004: YellowBullet2
+    21300006: RedBullet1
+    21300008: RedBullet2
   externalObjects: {}
   serializedVersion: 6
   mipmaps:
@@ -99,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: laser-bolts_0
+      name: RedBullet1
       rect:
         serializedVersion: 2
-        x: 6
-        y: 20
+        x: 42
+        y: 26
         width: 5
-        height: 5
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -113,19 +114,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e61387a00657b29498a9fdf0433f864e
+      spriteID: c7dce16d2794b604686462ae512fbb32
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: laser-bolts_1
+      name: RedBullet2
       rect:
         serializedVersion: 2
-        x: 20
-        y: 20
-        width: 5
-        height: 5
+        x: 54
+        y: 32
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,19 +134,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a76c42cf2ff525940a90a4b08e5ee5a5
+      spriteID: 3bda6af4fc5fa74479f2f4a1d176f936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: laser-bolts_2
+      name: YellowBullet1
       rect:
         serializedVersion: 2
-        x: 6
-        y: 2
+        x: 42
+        y: 5
         width: 5
-        height: 12
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,17 +154,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6702b21d59e19b47ab21e33e83a3970
+      spriteID: 4ab3dc5de2a14924f8a89c93d757c8c0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: laser-bolts_3
+      name: YellowBullet2
       rect:
         serializedVersion: 2
-        x: 20
-        y: 1
+        x: 56
+        y: 4
         width: 5
         height: 13
       alignment: 0
@@ -173,7 +174,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e655de05e2fb4a345801977cc78ce5a0
+      spriteID: 891652c01429c5e4184504bec78c01f6
       vertices: []
       indices: 
       edges: []
@@ -181,7 +182,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b7226dcea0c13cd46853a4ddf5401f96
+    spriteID: f78cd21f6910ecd48920684dee7cc57e
     vertices: []
     indices: 
     edges: []
