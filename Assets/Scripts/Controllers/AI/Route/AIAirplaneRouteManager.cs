@@ -83,6 +83,9 @@ public class AIAirplaneRouteManager : MonoBehaviour {
 
     private void CheckTarget()
     {
+        if (targetController == null)
+            return;
+
         //RaycastHit rayHit;
         //bool isHit = Physics.SphereCast(CurrentTarget.position, waypointTriggingCheckSize, CurrentTarget.forward, out rayHit);
         //if (isHit)
