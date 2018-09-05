@@ -797,6 +797,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4816651424443644, guid: 5fcdffa12c154d84785bd6b2554ce8b8,
     type: 2}
   m_PrefabInternal: {fileID: 538851619}
+--- !u!1 &557680831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 557680832}
+  - component: {fileID: 557680835}
+  - component: {fileID: 557680834}
+  m_Layer: 5
+  m_Name: Enemy Number Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &557680832
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 557680831}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_Children: []
+  m_Father: {fileID: 2118273206}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -95.1}
+  m_SizeDelta: {x: 244.1, y: 53.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &557680834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 557680831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 99
+--- !u!222 &557680835
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 557680831}
+  m_CullTransparentMesh: 0
 --- !u!1 &561956305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,7 +1277,7 @@ MonoBehaviour:
   - "\uC778\uC0DD \uCD5C\uACE0\uC758 \uB0A0!"
   - "\uB108\uBB34 \uC6C3\uAE30\uB2E4!"
   - "\u314B\u314B\u314B\u314B"
-  - "\uADF8\uB0E5 \uAC00~"
+  - "\uC751~\uADF8\uB0E5 \uAC00~"
 --- !u!1001 &1212796595
 Prefab:
   m_ObjectHideFlags: 0
@@ -1583,7 +1658,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0000
+  m_Text: 000000000
 --- !u!222 &1304443810
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2699,6 +2774,7 @@ GameObject:
   - component: {fileID: 2118273204}
   - component: {fileID: 2118273203}
   - component: {fileID: 2118273207}
+  - component: {fileID: 2118273208}
   m_Layer: 5
   m_Name: Game UI Canvas
   m_TagString: Untagged
@@ -2776,6 +2852,7 @@ RectTransform:
   - {fileID: 1304443808}
   - {fileID: 1289107067}
   - {fileID: 1141116096}
+  - {fileID: 557680832}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2799,3 +2876,21 @@ MonoBehaviour:
   waveNumberText: {fileID: 1289107068}
   enemyNumberText: {fileID: 0}
   teaseImage: {fileID: 1141116097}
+--- !u!114 &2118273208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2118273202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27080c6e4142a7f4580b77e1e1114a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyImage: {fileID: 114214075752167534, guid: 141566029949ec442b0d942bb2037cea,
+    type: 2}
+  itemImage: {fileID: 114675772944781776, guid: f43ed144646b7664a98a046a105d4351,
+    type: 2}
+  indicators: []
+  canvas: {fileID: 2118273205}
+  offset: 30

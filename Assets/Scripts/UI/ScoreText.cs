@@ -26,6 +26,6 @@ public class ScoreText : MonoBehaviour
     {
         int score = System.Convert.ToInt32(p_score);
 
-        scoreText.text = score.ToString("0000");
+        scoreText.text = score.ToString("000000000");
     }
 }

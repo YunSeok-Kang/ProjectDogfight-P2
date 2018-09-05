@@ -286,7 +286,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1446578677456384}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -221.4, y: 102.9, z: -0.06648094}
+  m_LocalPosition: {x: -221.4, y: 0, z: -0.06648094}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4156034769633346}
@@ -795,7 +795,6 @@ MonoBehaviour:
   controller: {fileID: 114753200697684482}
   particleOnDestroy: {fileID: 198237386872617196, guid: c89f3a685972cc7448dfbf041e1340c8,
     type: 2}
-  source: {fileID: 0}
   destroyClip: {fileID: 8300000, guid: 9c2f45af6f6b6694d83fdbae0444523e, type: 3}
   speed: 10
 --- !u!114 &114340409009936312

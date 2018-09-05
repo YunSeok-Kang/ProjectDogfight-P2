@@ -23,10 +23,8 @@ public class GameStart : MonoBehaviour
 
 
         VoxObject[] voxObjects = FindObjectsOfType<VoxObject>();
-        Debug.Log(voxObjects.Length);
         foreach (VoxObject voxObject in voxObjects)
         {
-            Debug.Log(voxObject.name);
             voxObject.ActivateObject(false);
         }
 
