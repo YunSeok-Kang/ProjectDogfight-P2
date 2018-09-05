@@ -9,35 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1854107631505482}
+  m_RootGameObject: {fileID: 1272297693798050}
   m_IsPrefabAsset: 1
---- !u!1 &1222582326892204
+--- !u!1 &1123766885908922
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4594397931822782}
-  - component: {fileID: 33514699888016166}
-  - component: {fileID: 23572406691143084}
-  m_Layer: 10
-  m_Name: WaypointTwo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1285490604099620
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4448130317861914}
-  - component: {fileID: 33664997624325922}
-  - component: {fileID: 23613851969902624}
+  - component: {fileID: 4259820167887652}
+  - component: {fileID: 33759841194685812}
+  - component: {fileID: 23816844694526826}
   m_Layer: 10
   m_Name: WaypointOne
   m_TagString: Untagged
@@ -45,15 +28,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1854107631505482
+--- !u!1 &1128271728142146
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4582967501581316}
-  - component: {fileID: 114370056162760428}
+  - component: {fileID: 4832610021637308}
+  - component: {fileID: 33005849399621226}
+  - component: {fileID: 23215071217722512}
+  m_Layer: 10
+  m_Name: WaypointTwo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1272297693798050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4716784201240496}
+  - component: {fileID: 114692723127109336}
   m_Layer: 10
   m_Name: AIAirplane_Route
   m_TagString: Untagged
@@ -61,53 +61,53 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4448130317861914
+--- !u!4 &4259820167887652
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1285490604099620}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1380, y: 100, z: 0}
+  m_GameObject: {fileID: 1123766885908922}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -277, y: 41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4582967501581316}
-  m_RootOrder: 0
+  m_Father: {fileID: 4716784201240496}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4582967501581316
+--- !u!4 &4716784201240496
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1854107631505482}
+  m_GameObject: {fileID: 1272297693798050}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 596.3074, y: 197.23758, z: 10.066481}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4448130317861914}
-  - {fileID: 4594397931822782}
+  - {fileID: 4832610021637308}
+  - {fileID: 4259820167887652}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4594397931822782
+--- !u!4 &4832610021637308
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222582326892204}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -570, y: 100, z: 0}
+  m_GameObject: {fileID: 1128271728142146}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1217, y: -11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4582967501581316}
-  m_RootOrder: 1
+  m_Father: {fileID: 4716784201240496}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23572406691143084
+--- !u!23 &23215071217722512
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222582326892204}
+  m_GameObject: {fileID: 1128271728142146}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -137,12 +137,12 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!23 &23613851969902624
+--- !u!23 &23816844694526826
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1285490604099620}
+  m_GameObject: {fileID: 1123766885908922}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -172,26 +172,26 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33514699888016166
+--- !u!33 &33005849399621226
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222582326892204}
+  m_GameObject: {fileID: 1128271728142146}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &33664997624325922
+--- !u!33 &33759841194685812
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1285490604099620}
+  m_GameObject: {fileID: 1123766885908922}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114370056162760428
+--- !u!114 &114692723127109336
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1854107631505482}
+  m_GameObject: {fileID: 1272297693798050}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79265a797b761534ebab895a59f01895, type: 3}
@@ -200,6 +200,6 @@ MonoBehaviour:
   _currentTarget: {fileID: 0}
   targetController: {fileID: 0}
   waypoints:
-  - {fileID: 1285490604099620}
-  - {fileID: 1222582326892204}
+  - {fileID: 1123766885908922}
+  - {fileID: 1128271728142146}
   waypointTriggingCheckSize: 100
