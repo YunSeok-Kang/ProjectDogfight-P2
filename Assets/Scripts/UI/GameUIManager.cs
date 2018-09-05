@@ -32,6 +32,6 @@ public class GameUIManager : MonoBehaviour
 
     public Text scoreText;
     public Text waveNumberText;
-    public Text enemyNumberText;
+    public Text enemyCountText;
     public Image teaseImage;
 }

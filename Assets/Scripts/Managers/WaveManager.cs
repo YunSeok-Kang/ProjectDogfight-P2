@@ -104,6 +104,7 @@ public class WaveManager : MonoBehaviour
         _currentWaveHP = _totalWaveHP;
 
         currentWave = tempWave;
+        VoxEventManager.Instance.PostNotifycation("UpdateEnemyCount", leftEnemies);
     }
 
     private float GetCurrentWaveHP()
@@ -123,6 +124,7 @@ public class WaveManager : MonoBehaviour
     {
         _isPreWave = true;
         CreateWave(preWave);
+       VoxEventManager.Instance.PostNotifycation("WaveChanged", currentWaveCount);
     }
 
     private void StartNextWave()
