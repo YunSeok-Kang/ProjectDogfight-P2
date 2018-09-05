@@ -130,6 +130,9 @@ public class ScreenIndicator : MonoBehaviour
 
         ind.rectTransform.position = new Vector3(x, y,0);
 
+        //화살표들의 각도는 화면 중간을 중심으로 정해져야함
+        //그러나 screen pos들은 Bottom left를 중심으로 되어있음.
+        //그러므로 보간해줘야함.
         Vector3 screenCenter = new Vector3(Screen.width, Screen.height, 0) / 2;
         float angle = Mathf.Atan2(screenCenter.y - screenpos.y, screenCenter.x -screenpos.x);
         //angle -= 90 * Mathf.Deg2Rad;
