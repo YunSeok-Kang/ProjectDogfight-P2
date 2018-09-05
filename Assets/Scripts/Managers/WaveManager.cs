@@ -131,6 +131,7 @@ public class WaveManager : MonoBehaviour
             _waveList.RemoveAt(randomValue);
 
             currentWaveCount++;
+            VoxEventManager.Instance.PostNotifycation("WaveChanged", currentWaveCount);
         }
         else
         {
@@ -217,6 +218,7 @@ public class WaveManager : MonoBehaviour
     {
         // 그냥 파괴되어버리면 HP가 남는 문제가 있음.
         info.HP = 0;
+        currentWaveCount = 0;
 
         SetCurrentWavesScore(info);
 
