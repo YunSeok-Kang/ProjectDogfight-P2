@@ -47,16 +47,19 @@ public class AIAirplaneRouteManager : MonoBehaviour {
 
     private Transform GetNext()
     {
-        // Waypoint 마지막 끝나면 Player의 비행기를 쫓아감
-        if (_currentWaypointIndex == (waypoints.Length - 1))
-        {
-            isLastWaypoint = true;
-            return FindPlayerPlane();
-        }
-        else
-        {
-            _currentWaypointIndex++;
-        }
+        //// Waypoint 마지막 끝나면 Player의 비행기를 쫓아감
+        //if (_currentWaypointIndex == (waypoints.Length - 1))
+        //{
+        //    isLastWaypoint = true;
+        //    return FindPlayerPlane();
+        //}
+        //else
+        //{
+        //    _currentWaypointIndex++;
+        //}
+
+        _currentWaypointIndex = (_currentWaypointIndex + 1) % waypoints.Length;
+
 
         Debug.Log("waypoints[" + _currentWaypointIndex + "].transform");
         return waypoints[_currentWaypointIndex].transform;
