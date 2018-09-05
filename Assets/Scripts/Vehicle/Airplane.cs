@@ -56,7 +56,7 @@ public class Airplane : Vehicle
     private float _OriginalAngularDrag;  // The angular drag when the scene starts.
     private float _AeroFactor;
 
-    private Rigidbody _rigidbody;
+    private Rigidbody _rigidbody = null;
 
     public float liftPower = 0f;
     public float minEnginePower = 50f;
@@ -80,24 +80,29 @@ public class Airplane : Vehicle
     protected override bool Init ()
     {
         base.Init();
-        _rigidbody = GetComponent<Rigidbody>();
         return true;
+    }
+
+    private void SetupAirplane()
+    {
+        if (_rigidbody == null)
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+
+            // Store original drag settings, these are modified during flight.
+            _OriginalDrag = _rigidbody.drag;
+            _OriginalAngularDrag = _rigidbody.angularDrag;
+        }
     }
 
     private void Start()
     {
-        // Store original drag settings, these are modified during flight.
-        _OriginalDrag = _rigidbody.drag;
-        _OriginalAngularDrag = _rigidbody.angularDrag;
-
-        //Vector3 currentVelo = _rigidbody.velocity;
-        //currentVelo.z = 150;
-
-        //_rigidbody.velocity = currentVelo;
+        SetupAirplane();
     }
 
     public void Move(float pitchInput, float throttleInput, bool airBrakes)
     {
+        SetupAirplane(); // 임시방편. 뒤에가면 이거 빼야함.
 
         PitchInput = pitchInput;
 
