@@ -37,9 +37,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField]
     private Vehicle[] _enemyVehicles;
 
-    //private Queue<GameObject> _waveQueue = null;
-
-    public List<GameObject> _waveList = null;
+    private Queue<GameObject> _waveQueue = null;
 
     public GameObject preWave;
     public GameObject[] waves;
@@ -63,17 +61,11 @@ public class WaveManager : MonoBehaviour
             waveCreatingTransform = GameObject.Find("Objects").transform;
         }
 
-        _waveList = new List<GameObject>();
+        _waveQueue = new Queue<GameObject>();
         foreach (GameObject wave in waves)
         {
-            _waveList.Add(wave);
+            _waveQueue.Enqueue(wave);
         }
-
-        //_waveQueue = new Queue<GameObject>();
-        //foreach (GameObject wave in waves)
-        //{
-        //    _waveQueue.Enqueue(wave);
-        //}
     }
 
     private void CreateWave(GameObject waveObject)
@@ -130,37 +122,38 @@ public class WaveManager : MonoBehaviour
     private void StartNextWave()
     {
         GameObject nextWave = null;
-        int numberOfWaves = _waveList.Count;
+        //int numberOfWaves = _waveList.Count;
 
-        if (numberOfWaves > 0)
-        {
-            int randomValue = Random.Range(0, numberOfWaves);
-            nextWave = _waveList[randomValue];
-            _waveList.RemoveAt(randomValue);
-
-            currentWaveCount++;
-            VoxEventManager.Instance.PostNotifycation("WaveChanged", currentWaveCount);
-        }
-        else
-        {
-            //다음 웨이브가 없다는 뜻
-            // = 승리
-            VoxEventManager.Instance.PostNotifycation("AllWavesWereCleared", null);
-            return;
-        }
-
-        //try
+        //if (numberOfWaves > 0)
         //{
-        //    // 다음 웨이브
-        //    nextWave = _waveQueue.Dequeue();
+        //    int randomValue = Random.Range(0, numberOfWaves);
+        //    nextWave = _waveList[randomValue];
+        //    _waveList.RemoveAt(randomValue);
+
+        //    currentWaveCount++;
+        //    VoxEventManager.Instance.PostNotifycation("WaveChanged", currentWaveCount);
         //}
-        //catch (System.InvalidOperationException e) // 큐가 비었을 시
+        //else
         //{
-        //    // 다음 웨이브가 없다는 뜻
+        //    //다음 웨이브가 없다는 뜻
         //    // = 승리
         //    VoxEventManager.Instance.PostNotifycation("AllWavesWereCleared", null);
         //    return;
         //}
+
+        try
+        {
+            // 다음 웨이브
+            nextWave = _waveQueue.Dequeue();
+            currentWaveCount++;
+        }
+        catch (System.InvalidOperationException e) // 큐가 비었을 시
+        {
+            // 다음 웨이브가 없다는 뜻
+            // = 승리
+            VoxEventManager.Instance.PostNotifycation("AllWavesWereCleared", null);
+            return;
+        }
 
         _isPreWave = false;
         CreateWave(nextWave);
