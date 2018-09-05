@@ -33,7 +33,8 @@ public class AIAirplaneRouteManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        waypoints = new GameObject[0];
+        if (waypoints == null)
+            waypoints = new GameObject[0];
 
         CurrentTarget = GetNext();
     }
@@ -76,7 +77,7 @@ public class AIAirplaneRouteManager : MonoBehaviour {
     {
         if (Application.isPlaying)
         {
-            //Gizmos.DrawSphere(CurrentTarget.position, waypointTriggingCheckSize);
+            Gizmos.DrawSphere(CurrentTarget.position, waypointTriggingCheckSize);
         }
     }
 
