@@ -54,6 +54,8 @@ public class WaveManager : MonoBehaviour
     // 0 = PreWave
     public int currentWaveCount = 0;
 
+    public int leftEnemies = 0;
+
     private void Start()
     {
         if (waveCreatingTransform == null)
@@ -79,6 +81,8 @@ public class WaveManager : MonoBehaviour
         GameObject tempWave = Instantiate(waveObject);
         tempWave.transform.parent = waveCreatingTransform;
 
+        leftEnemies = 0;
+
         _enemyVehicles = tempWave.GetComponentsInChildren<Vehicle>();
         foreach (Vehicle vehicle in _enemyVehicles)
         {
@@ -91,6 +95,8 @@ public class WaveManager : MonoBehaviour
                 Airplane enemyAirplane = vehicle as Airplane;
                 enemyAirplane.onCrashedEvent += VehicleCrashingEvent;
             }
+
+            leftEnemies++;
 
             // Screen Indicator 리스트에 넣는 코드;
         }
@@ -183,6 +189,9 @@ public class WaveManager : MonoBehaviour
         {
             StartNextWave();
         }
+
+        leftEnemies--;
+        VoxEventManager.Instance.PostNotifycation("UpdateEnemyCount", leftEnemies);
 
         //이전 코드
         /* if (_isPreWave)
