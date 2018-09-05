@@ -5,10 +5,12 @@ using UnityEngine;
 /// <summary>
 /// 프로젝트의 오브젝트 그룹중 최상단. UE4로 비유하면 Actor의 역할. 
 /// </summary>
-public class VoxObject : MonoBehaviour {
-
+public class VoxObject : MonoBehaviour
+{
     [SerializeField]
     private float _hp = 0f;
+
+    private bool alreadyCalledOnHPZero = false;
 
     public float HP
     {
@@ -35,7 +37,7 @@ public class VoxObject : MonoBehaviour {
             }
             
             if(value <= 0 )
-            {
+            { 
                 _hp = 0;
                 OnHPZero();
             }
@@ -95,6 +97,13 @@ public class VoxObject : MonoBehaviour {
 
     protected virtual void OnHPZero()
     {
+        if (alreadyCalledOnHPZero == true)
+        {
+            return;
+        }
+
+        alreadyCalledOnHPZero = true;
+
         VoxDestroy();
     }
 
