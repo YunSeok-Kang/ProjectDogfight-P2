@@ -39,6 +39,14 @@ public class VoxObject : MonoBehaviour
             if(value <= 0 )
             { 
                 _hp = 0;
+
+                if (alreadyCalledOnHPZero == true)
+                {
+                    return;
+                }
+
+                alreadyCalledOnHPZero = true;
+
                 OnHPZero();
             }
         }
@@ -97,13 +105,6 @@ public class VoxObject : MonoBehaviour
 
     protected virtual void OnHPZero()
     {
-        if (alreadyCalledOnHPZero == true)
-        {
-            return;
-        }
-
-        alreadyCalledOnHPZero = true;
-
         VoxDestroy();
     }
 
