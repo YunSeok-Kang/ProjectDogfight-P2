@@ -51,6 +51,9 @@ public class WaveManager : MonoBehaviour
 
     public AudioClip scoreClip = null;
 
+    // 0 = PreWave
+    public int currentWaveCount = 0;
+
     private void Start()
     {
         if (waveCreatingTransform == null)
@@ -126,6 +129,8 @@ public class WaveManager : MonoBehaviour
             int randomValue = Random.Range(0, numberOfWaves);
             nextWave = _waveList[randomValue];
             _waveList.RemoveAt(randomValue);
+
+            currentWaveCount++;
         }
         else
         {
