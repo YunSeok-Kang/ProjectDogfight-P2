@@ -968,13 +968,13 @@ MonoBehaviour:
   _airBrakesEffect: 3
   _throttleChangeSpeed: 0.3
   _dragIncreaseFactor: 0.001
-  _torqueFactor: 6
+  _torqueFactor: 12
   _currentForwardSpeed: 0
   liftPower: 0
   minEnginePower: 500
   altitudePhase1Start: 900
   altitudePhase2Start: 1300
-  graySmokeHP: 180
+  graySmokeHP: 200
   blackSmokeHP: 100
   graySmokeParticle: {fileID: 198377962146184254}
   blackSmokeParticle: {fileID: 198422696202677388}

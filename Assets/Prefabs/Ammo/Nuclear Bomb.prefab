@@ -170,7 +170,8 @@ MonoBehaviour:
   _hp: 0
   lifetime: 500
   enemyTag: Enemy
-  ammoDestructionParticle: {fileID: 0}
+  particleOnDestroy: {fileID: 0}
+  clipOnDestroy: {fileID: 0}
 --- !u!114 &114892278142137396
 MonoBehaviour:
   m_ObjectHideFlags: 1
