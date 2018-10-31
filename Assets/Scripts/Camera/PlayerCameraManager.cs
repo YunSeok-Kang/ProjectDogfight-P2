@@ -79,6 +79,11 @@ public class PlayerCameraManager : MonoBehaviour
     public float duration = 0.25f;
     public float magnitude = 0.1f;
 
+    [Header("EndOfMap")]
+    public Transform stuckLeft;
+    public Transform stuckRight;
+    public float stuckOffset = 100;
+
     void Start()
     {
         maxAltMinusMinAlt = maxAltitude - minAltitude;
@@ -114,6 +119,7 @@ public class PlayerCameraManager : MonoBehaviour
     {
         if (_target != null && _target.CompareTag("Player"))
         {
+           
             //확대축소 비율 구하기
             float magnitudeFromTop = maxAltitude - _targetTrans.position.y;
             float magnitudeFromBottom = Mathf.Abs(minAltitude - _targetTrans.position.y);
@@ -123,11 +129,18 @@ public class PlayerCameraManager : MonoBehaviour
             newCameraPosition += GetCameraForwardByMagnitude(magnitudeFromBottom);
             newCameraPosition += GetCameraOffsetByMagnitude(magnitudeFromTop);
 
+            //벽에 걸리게하기
+            newCameraPosition = NormalizeWhenStucked(newCameraPosition);
+            
+
+
             MoveCameraSmootly(GetCameraAngleByMagnitude(magnitudeFromTop), newCameraPosition, angleFollowSpeed, positionFollowSpeed);
+
         }
         else
         {
-            //적을 쫒아갈 경우
+            /**적을 쫒아갈 경우
+             * **/
             Vector3 newCameraPosition;
             newCameraPosition = _targetTrans.position;
             newCameraPosition += new Vector3(0,5,40);
@@ -207,6 +220,18 @@ public class PlayerCameraManager : MonoBehaviour
         return _currentAngle = newQuaternion;
     }
 
+    private Vector3 NormalizeWhenStucked(Vector3 pos)
+    {
+        if (pos.x <= (stuckRight.position.x + stuckOffset))
+        {
+            pos = new Vector3(stuckRight.position.x + stuckOffset, pos.y, pos.z);
+        }
+        else if (pos.x >= (stuckLeft.position.x - stuckOffset))
+        {
+            pos = new Vector3(stuckLeft.position.x - stuckOffset, pos.y, pos.z);
+        }
+        return pos;
+    }
 
     public IEnumerator Shake()
     {

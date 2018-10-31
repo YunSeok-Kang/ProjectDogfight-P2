@@ -17,12 +17,22 @@ public class PlayerAirplaneController : PlayerController
             return _gunManger;
         }
     }
+
+    public float gizmoRadius = 25f;
+
+    //비행기 존재 확인하려고 기즈모 그림
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position, gizmoRadius);
+    }
+
     // Use this for initialization
-	private void Start ()
+    private void Start ()
     {
 		if (_playerAirplane == null)
         {
-            _playerAirplane = gameObject.GetComponent<Airplane>();
+            _playerAirplane = gameObject.GetComponent<Airplane>();  
         }
 	}
 
