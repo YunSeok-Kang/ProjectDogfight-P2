@@ -130,7 +130,7 @@ public class PlayerCameraManager : MonoBehaviour
             newCameraPosition += GetCameraOffsetByMagnitude(magnitudeFromTop);
 
             //벽에 걸리게하기
-            newCameraPosition = NormalizeWhenStucked(newCameraPosition);
+            //newCameraPosition = NormalizeWhenStucked(newCameraPosition);
             
 
 

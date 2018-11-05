@@ -19,11 +19,12 @@ public class PlayerAirplaneController : PlayerController
     }
 
     public float gizmoRadius = 25f;
-
+    public bool isDrawGizmo = false;
     //비행기 존재 확인하려고 기즈모 그림
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
+        if(isDrawGizmo)
         Gizmos.DrawSphere(transform.position, gizmoRadius);
     }
 
